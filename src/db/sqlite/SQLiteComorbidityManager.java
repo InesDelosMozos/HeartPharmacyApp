@@ -19,6 +19,7 @@ import pojos.Patient;
  *
  * @author RAQUEL
  */
+
 public class SQLiteComorbidityManager implements ComorbidityManager {
     private Connection c;
 

@@ -37,7 +37,7 @@ public class SQLiteManager implements DBManager {
 
             drug = new SQLiteDrugManager(c);
 
-            comorbidity = new SQLiteComorbidityManager(c);
+            //comorbidity = new SQLiteComorbidityManager(c);
 
             treatment = new SQLiteTreatmentManager(c);
             

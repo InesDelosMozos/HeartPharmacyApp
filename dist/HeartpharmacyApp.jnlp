@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="HeartpharmacyApp.jar" size="32920" download="eager" />
+    <jar href="HeartpharmacyApp.jar" size="52899" download="eager" />
     <jar href="lib\SparseBitSet-1.2.jar" size="24510" download="eager" />
     <jar href="lib\aether-api-1.1.0.jar" size="136369" download="eager" />
     <jar href="lib\aether-connector-basic-1.1.0.jar" size="36725" download="eager" />
@@ -22,6 +22,7 @@
     <jar href="lib\ant-launcher-1.10.11.jar" size="18881" download="eager" />
     <jar href="lib\antlr-runtime-3.5.2.jar" size="167761" download="eager" />
     <jar href="lib\aopalliance-1.0.jar" size="4467" download="eager" />
+    <jar href="lib\bluecove-2.1.1-SNAPSHOT.jar" size="663800" download="eager" />
     <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
     <jar href="lib\commons-collections4-4.4.jar" size="751914" download="eager" />
     <jar href="lib\commons-compress-1.21.jar" size="1018316" download="eager" />
@@ -43,6 +44,7 @@
     <jar href="lib\drools-serialization-protobuf-7.65.0.Final.jar" size="849408" download="eager" />
     <jar href="lib\drools-templates-7.65.0.Final.jar" size="59678" download="eager" />
     <jar href="lib\ecj-3.18.0.jar" size="2870966" download="eager" />
+    <jar href="lib\eclipselink-2.6.jar" size="9078109" download="eager" />
     <jar href="lib\guice-4.0-no_aop.jar" size="423560" download="eager" />
     <jar href="lib\httpclient-4.5.13.jar" size="780321" download="eager" />
     <jar href="lib\httpcore-4.4.14.jar" size="328436" download="eager" />
