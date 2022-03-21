@@ -48,7 +48,7 @@ public class HeartpharmacyApp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-         KieServices ks = KieServices.Factory.get();
+        /*KieServices ks = KieServices.Factory.get();
         KieContainer kc = ks.getKieClasspathContainer();
 
         KieSession ksession = kc.newKieSession("diagnosisKS");
@@ -78,16 +78,17 @@ public class HeartpharmacyApp extends Application {
         System.out.println(p1);
 
         ksession.dispose();
+        */
         dbManager = new SQLiteManager();
         comorbidityManager = dbManager.getComorbidityManager();
         treatmentManager = dbManager.getTreatmentManager();
         patientManager = dbManager.getPatientManager();
         
-        String string = null;
+        /*String string = null;
         int patient_id=0;
         ComorbidityManager comorbiditymanager;
 
-        /*String comorbidity[] = string.split(",");
+        String  comorbidity[] = string.split(",");
         for(int i=0; i<comorbidity.length;i++){
         String symptom = comorbidity[i];
         comorbidityManager.add(symptom);
