@@ -5,6 +5,7 @@
  */
 package db.interfaces;
 
+import java.util.List;
 import pojos.Patient;
 
 /**
@@ -20,6 +21,10 @@ public interface PatientManager {
     public void assign_treatment(int patient_id, int treatment_id);
 
     public void assign_drug (int patient_id, int drug_id);
+    
+    public Patient getPatient(int patient_id);
+    
+    public List<Patient> searchByName(String name);
 
     
 }

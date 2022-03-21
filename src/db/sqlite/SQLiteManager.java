@@ -20,7 +20,7 @@ public class SQLiteManager implements DBManager {
     private DrugManager drug;
     private ComorbidityManager comorbidity;
     private TreatmentManager treatment;
-
+    private EcgManager ecg;
     public SQLiteManager() {
         super();
     }
@@ -40,6 +40,8 @@ public class SQLiteManager implements DBManager {
             comorbidity = new SQLiteComorbidityManager(c);
 
             treatment = new SQLiteTreatmentManager(c);
+            
+            ecg = new SQLiteEcgManager(c);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,7 +64,7 @@ public class SQLiteManager implements DBManager {
         try {
             stmt1 = c.createStatement();
             String sql1 = "CREATE TABLE patients " + "(id     INTEGER  PRIMARY KEY AUTOINCREMENT,"
-                    + " disease   TEXT   NOT NULL," + " drug_id INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
+                    + " fullName  TEXT   NOT NULL," + " disease   TEXT   NOT NULL," + " drug_id INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
                     + "gender  BOOLEAN," +"age INTEGER," + "pregnant BOOLEAN)";
             stmt1.executeUpdate(sql1);
             stmt1 = c.createStatement();
@@ -92,6 +94,10 @@ public class SQLiteManager implements DBManager {
             String sql7 = "CREATE TABLE patientTreatment " + "(patientId     INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
                     + "treatmentId     INTEGER  REFERENCES treatment(id) ON UPDATE CASCADE ON DELETE SET NULL, " + "PRIMARY KEY(patientId,treatmentId))";
             stmt1.executeUpdate(sql7);
+            String sql8 = "CREATE TABLE ecg " + "(id     INTEGER  PRIMARY KEY AUTOINCREMENT,"
+                    + " name_ecg   TEXT   NOT NULL," + "patient_id INTEGER REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL,"
+                    + " ecg_array BYTES)";
+            stmt1.executeUpdate(sql8);
             stmt1.close();
             
         } catch (SQLException e) {
@@ -101,10 +107,29 @@ public class SQLiteManager implements DBManager {
             }
         }
     }
+    @Override
+    public EcgManager getEcgManager() {
+        return ecg;
+    }
 
     @Override
     public PatientManager getPatientManager() {
         return patient;
+    }
+    
+    @Override
+    public TreatmentManager getTreatmentManager() {
+        return treatment;
+    }
+    
+    @Override
+    public ComorbidityManager getComorbidityManager() {
+        return comorbidity;
+    }
+    
+    @Override
+    public DrugManager getDrugManager() {
+        return drug;
     }
 
     public PatientManager getPatient() {
@@ -139,6 +164,14 @@ public class SQLiteManager implements DBManager {
         this.treatment = treatment;
     }
 
+    public EcgManager getEcg() {
+        return ecg;
+    }
+
+    public void setEcg(EcgManager ecg) {
+        this.ecg = ecg;
+    }
+
    
     @Override
     public int getLastId() {
@@ -154,18 +187,5 @@ public class SQLiteManager implements DBManager {
             return result;
     }
 
-    @Override
-    public DrugManager getDrugManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ComorbidityManager getComorbidityManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public TreatmentManager getTreatmentManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

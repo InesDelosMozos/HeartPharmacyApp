@@ -24,6 +24,8 @@ public interface DBManager {
     public ComorbidityManager getComorbidityManager();
 
     public TreatmentManager getTreatmentManager();
+    
+    public EcgManager getEcgManager();
 
     public int getLastId();
 }

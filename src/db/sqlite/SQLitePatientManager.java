@@ -8,7 +8,10 @@ package db.sqlite;
 import db.interfaces.PatientManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import pojos.Patient;
 
 /**
@@ -26,12 +29,13 @@ public class SQLitePatientManager implements PatientManager {
         try {
             String sql = "INSERT INTO patients (disease, age, gender, pregnant "
                     + ") "
-                    + "VALUES (?,?,?,?)";
+                    + "VALUES (?,?,?,?,?)";
             PreparedStatement prep = c.prepareStatement(sql);
-            prep.setString(1, patient.getDisease());
-            prep.setInt(2, patient.getAge());
-            prep.setBoolean(3, patient.getGender());
-            prep.setBoolean(4, patient.getPregnant());
+            prep.setString(1, patient.getFullName());
+            prep.setString(2, patient.getDisease());
+            prep.setInt(3, patient.getAge2());
+            prep.setBoolean(4, patient.getGender2());
+            prep.setBoolean(5, patient.getPregnant());
             prep.executeUpdate();
             prep.close();
         } catch (SQLException e) {
@@ -79,5 +83,63 @@ public class SQLitePatientManager implements PatientManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+      public Patient getPatient(int patientId) {
+        Patient newPatient = null;
+        try {
+            String sql = "SELECT * FROM patients" + " WHERE id = ?";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setInt(1, patientId);
+            ResultSet rs = p.executeQuery();
+            boolean patientCreated = false;
+            while (rs.next()) {
+                if (!patientCreated) {
+                    int newPatientId = rs.getInt(1);
+                    String patientName = rs.getString(2);
+                    String patientDisease = rs.getString(3);
+                    Integer patientDrug = rs.getInt(4);
+                    Boolean patientGender = rs.getBoolean(5);
+                    Integer patientAge = rs.getInt(6);
+                    Boolean patientPregnant = rs.getBoolean(7);
+                    
+                    newPatient = new Patient(newPatientId, patientName, patientDisease,
+                            patientGender, patientAge, patientPregnant);
+                    
+                    patientCreated = true;
+                }
+               
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return newPatient;
+    }
+      
+    @Override
+    public List<Patient> searchByName(String name) {
+        List<Patient> patientsList = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM patients WHERE fullname LIKE ?";
+            PreparedStatement prep = c.prepareStatement(sql);
+            prep.setString(1, "%" + name + "%");
+            ResultSet rs = prep.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String patientName = rs.getString("fullName");
+                String patientDisease = rs.getString("disease");
+                Integer patientDrug = rs.getInt("drug_id");
+                Boolean patientGender = rs.getBoolean("gender");
+                Integer patientAge = rs.getInt("age");
+                Boolean patientPregnant = rs.getBoolean("pregnant");
+
+                Patient newpatient = new Patient(id, patientName, patientDisease,
+                         patientGender, patientAge, patientPregnant);
+                patientsList.add(newpatient);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return patientsList;
     }
 }

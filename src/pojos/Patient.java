@@ -16,22 +16,65 @@ public class Patient {
     
    private Integer id;
    public boolean pregnant ;
-   public boolean gender;
-
-    public void setAge(Age age) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   private enum Gender {MALE,FEMALE};
-   public enum Age {CHILD,YOUNG,ADULT,ELDER};
-   public int age;
+   public Gender gender;
+   public String fullName;
+   public Age age;
+   public int age2;
+   public boolean gender2;
    private String disease;
    private List<String> comorbidity = new ArrayList<>();
    private List<String> medicines = new ArrayList<>();
    //private List<String> treatments = new ArrayList<>();
    private String treatments;
-   private Gender gender2;
-   private Age age2;
 
+    public Patient(boolean pregnant, Gender gender, String fullName, int age2, boolean gender2) {
+        this.pregnant = pregnant;
+        this.gender = gender;
+        this.fullName = fullName;
+        this.age2 = age2;
+        this.gender2 = gender2;
+    }
+   
+    
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Age getAge() {
+        return age;
+    }
+
+    public void setAge(Age age) {
+        this.age = age;
+    }
+
+    public int getAge2() {
+        return age2;
+    }
+
+    public void setAge2(int age2) {
+        this.age2 = age2;
+    }
+
+    public boolean getGender2() {
+        return gender2;
+    }
+
+    public void setGender2(boolean gender2) {
+        this.gender2 = gender2;
+    }
+   
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
     public boolean getPregnant() {
         return pregnant;
     }
@@ -72,39 +115,33 @@ public class Patient {
         this.treatments = treatments;
     }
     
-    public boolean getGender() {
-        return gender;
-    }
 
-    public void setGender(boolean gender) {
-        this.gender = gender;
+    
+    public Patient(int newPatientId, String patientName, String patientDisease,
+            Boolean patientGender, Integer patientAge, Boolean patientPregnant){
+       this.id = newPatientId;
+       this.fullName= patientName;
+       this.disease = patientDisease;
+       this.gender = Gender.genderFromBoolean(patientGender);
+       this.age = Age.ageFromInteger(patientAge);
+       this.pregnant = patientPregnant;       
     }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Patient(Integer id, boolean pregnant, String disease, String treatments, boolean gender, int age) {
-        this.id = id;
+    /*
+    public enum genderEnum(patientGender){
+        if(patientGender.equals(1)){
+            
+        }
+    }*/
+    public Patient(boolean pregnant, boolean gender, String fullName, int age, String disease) {
         this.pregnant = pregnant;
+        this.gender = Gender.genderFromBoolean(gender);
+        this.fullName = fullName;
+        this.age = Age.ageFromInteger(age);
         this.disease = disease;
-        this.treatments = treatments;
-        this.gender = gender;
-        this.age = age;
     }
-    public Patient(String disease, boolean pregnant) {
-        this.disease = disease;
-        this.pregnant = pregnant;
-        
-    }
-    @Override
-    public String toString() {
-        return "Patient1{" + "age=" + age + ", comorbidity=" + comorbidity + ", medicines=" + medicines + ", treatments=" + treatments + '}';
-    }
+    
+    
+   
     public Patient() {
     }
     

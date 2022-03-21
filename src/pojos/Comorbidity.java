@@ -18,10 +18,6 @@ public class Comorbidity {
         this.id = id;
         this.name = name;
     }
-    
-    public Comorbidity(String name){
-        this.name = name;
-    }
 
     public Integer getId() {
         return id;
