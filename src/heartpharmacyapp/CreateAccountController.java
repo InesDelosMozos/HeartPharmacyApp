@@ -77,7 +77,7 @@ public class CreateAccountController {
                 byte[] hash = md.digest();
                 User user = new User(username, hash);
                 userman.newUser(user);
-                Parent root = FXMLLoader.load(getClass().getResource("newPatient.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
