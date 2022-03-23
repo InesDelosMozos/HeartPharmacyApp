@@ -29,13 +29,11 @@ import pojos.Patient;
  * @author inesd
  */
 public class HeartpharmacyApp extends Application {
-    private static DBManager dbManager;
-    private static ComorbidityManager comorbidityManager;
-    private static TreatmentManager treatmentManager;
-    private static PatientManager patientManager;
+    private static DBManager dbManager = new SQLiteManager();
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("pantallaInicio.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("listpatient.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -47,63 +45,11 @@ public class HeartpharmacyApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        dbManager.connect();
+        dbManager.createTables();
         launch(args);
-        /*KieServices ks = KieServices.Factory.get();
-        KieContainer kc = ks.getKieClasspathContainer();
-
-        KieSession ksession = kc.newKieSession("diagnosisKS");
-        Collection<KiePackage> kpcks = ksession.getKieBase().getKiePackages();
-        for (KiePackage kpck : kpcks) {
-            Collection<org.kie.api.definition.rule.Rule> krules = kpck.getRules();
-            for (org.kie.api.definition.rule.Rule r : krules) {
-                System.out.println(r);
-            }
-        }
-
-        Patient p1 = new Patient("heart failure", true);
-        List<String> comorbidity = new ArrayList<>();
-        comorbidity.add("allergic to proteins ");
-        p1.setComorbidity(comorbidity);
-        List<String> medicines = new ArrayList<>();
-        medicines.add("aspirin");
-        p1.setMedicines(medicines);
-        p1.setAge(Patient.Age.YOUNG);
-
-        ksession.insert(p1);
-
-        ksession.fireAllRules();
-
-        System.out.println("AFTER");
-
-        System.out.println(p1);
-
-        ksession.dispose();
-        */
-        dbManager = new SQLiteManager();
-        comorbidityManager = dbManager.getComorbidityManager();
-        treatmentManager = dbManager.getTreatmentManager();
-        patientManager = dbManager.getPatientManager();
+        dbManager.disconnect();
         
-        /*String string = null;
-        int patient_id=0;
-        ComorbidityManager comorbiditymanager;
-
-        String  comorbidity[] = string.split(",");
-        for(int i=0; i<comorbidity.length;i++){
-        String symptom = comorbidity[i];
-        comorbidityManager.add(symptom);
-        int comorbidityId = dbManager.getLastId();
-        patientManager.assign_comorbidity(patient_id, comorbidityId);
-        }
-
-
-        String treatment[] = string.split(",");
-        for(int i=0; i<treatment.length;i++){
-        String symptom = treatment[i];
-        treatmentManager.add(symptom);
-        int treatmentId= dbManager.getLastId();
-        patientManager.assign_treatment(patient_id, treatmentId);
-        }*/
     }
     
 }

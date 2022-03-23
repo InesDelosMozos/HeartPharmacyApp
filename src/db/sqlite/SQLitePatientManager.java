@@ -25,14 +25,18 @@ public class SQLitePatientManager implements PatientManager {
         this.c = c;
     }
     
+    public SQLitePatientManager(){
+        super();
+    }
+    
     public void add(Patient patient) {
         try {
-            String sql = "INSERT INTO patients (disease, age, gender, pregnant "
+            String sql = "INSERT INTO patients (fullName,disease, age, gender, pregnant "
                     + ") "
                     + "VALUES (?,?,?,?,?)";
             PreparedStatement prep = c.prepareStatement(sql);
             prep.setString(1, patient.getFullName());
-            prep.setString(2, patient.getDisease());
+            prep.setString(2, patient.getHeartDisease());
             prep.setInt(3, patient.getAge2());
             prep.setBoolean(4, patient.getGender2());
             prep.setBoolean(5, patient.getPregnant());
@@ -84,7 +88,30 @@ public class SQLitePatientManager implements PatientManager {
             e.printStackTrace();
         }
     }
-    
+    public ArrayList<Patient> getPatients(){
+        ArrayList<Patient> patientsList= new ArrayList<Patient>();
+        try{
+            String sql = "SELECT * FROM patients" ;
+            PreparedStatement p = c.prepareStatement(sql);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String patientName = rs.getString("fullName");
+                String patientDisease = rs.getString("disease");
+                Integer patientDrug = rs.getInt("drug_id");
+                Boolean patientGender = rs.getBoolean("gender");
+                Integer patientAge = rs.getInt("age");
+                Boolean patientPregnant = rs.getBoolean("pregnant");
+
+                Patient newpatient = new Patient(id, patientName, patientDisease,
+                         patientGender, patientAge, patientPregnant);
+                patientsList.add(newpatient);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return patientsList;     
+    }
       public Patient getPatient(int patientId) {
         Patient newPatient = null;
         try {

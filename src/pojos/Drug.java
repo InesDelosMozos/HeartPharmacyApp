@@ -5,47 +5,54 @@
  */
 package pojos;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author RAQUEL
  */
 public class Drug {
     
-    private Integer id;
-    private String name;
-    private Integer duration;
+    private SimpleIntegerProperty id;
+    private SimpleStringProperty name;
+    private SimpleIntegerProperty duration;
 
     public Drug() {
     }
 
     public Drug(Integer id, String name, Integer duration) {
-        this.id = id;
-        this.name = name;
-        this.duration = duration;
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.duration = new SimpleIntegerProperty(duration);
+    }
+
+    public Drug(String name) {
+       this.name = new SimpleStringProperty(name);
     }
 
     public Integer getId() {
-        return id;
+        return id.get();
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id = new SimpleIntegerProperty(id);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
     }
 
     public Integer getDuration() {
-        return duration;
+        return duration.get();
     }
 
     public void setDuration(Integer duration) {
-        this.duration = duration;
+        this.duration = new SimpleIntegerProperty(duration);
     }
     
 }

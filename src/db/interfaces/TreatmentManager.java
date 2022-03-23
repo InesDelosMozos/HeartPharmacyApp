@@ -5,10 +5,15 @@
  */
 package db.interfaces;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author RAQUEL
  */
 public interface TreatmentManager {
     public void add(String treatment);
+      public ArrayList<String> getTreatmentFromPatient(int patientId);
 }
+
+

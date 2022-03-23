@@ -5,34 +5,50 @@
  */
 package pojos;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author RAQUEL
  */
 public class Comorbidity {
     
-    private Integer id;
-    private String name;
+    private SimpleIntegerProperty id;
+    private SimpleStringProperty name;
 
     public Comorbidity(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+    }
+
+    public Comorbidity(String comorbidities) {
+        this.name = new SimpleStringProperty(comorbidities);
+       
+    }
+    public Comorbidity(){
+        super();
+    }
+
+    @Override
+    public String toString() {
+        return "Comorbidity{" + "name=" + name + '}';
     }
 
     public Integer getId() {
-        return id;
+        return id.get();
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id = new SimpleIntegerProperty(id);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
     }
     
 }

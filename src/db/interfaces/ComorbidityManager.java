@@ -5,6 +5,8 @@
  */
 package db.interfaces;
 
+import java.util.ArrayList;
+import java.util.List;
 import pojos.Comorbidity;
 
 /**
@@ -14,5 +16,5 @@ import pojos.Comorbidity;
 public interface ComorbidityManager {
     
     public void add(String comorbidity);
-    
+    public ArrayList<String> getComorbiditiesFromPatient(int patientId); 
 }

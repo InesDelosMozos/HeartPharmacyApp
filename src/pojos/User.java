@@ -26,6 +26,9 @@ public class User implements Serializable{
     String email;
     @Lob
     private byte[] password;
+    public User(){
+        
+    }
     
     public User(String email, byte[] password){
         super();

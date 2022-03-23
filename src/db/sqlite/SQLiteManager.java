@@ -21,8 +21,10 @@ public class SQLiteManager implements DBManager {
     private ComorbidityManager comorbidity;
     private TreatmentManager treatment;
     private EcgManager ecg;
+    
     public SQLiteManager() {
         super();
+        this.connect();
     }
 
     @Override
@@ -30,14 +32,14 @@ public class SQLiteManager implements DBManager {
         try {
 
             Class.forName("org.sqlite.JDBC");
-            this.c = DriverManager.getConnection("jdbc:sqlite:./db/DecisionSuport.db");
+            c = DriverManager.getConnection("jdbc:sqlite:./db/DSS.db");
             c.createStatement().execute("PRAGMA foreign_keys=ON");
-
+           
             patient = new SQLitePatientManager(c);
 
             drug = new SQLiteDrugManager(c);
 
-            //comorbidity = new SQLiteComorbidityManager(c);
+            comorbidity = new SQLiteComorbidityManager(c);
 
             treatment = new SQLiteTreatmentManager(c);
             
@@ -70,12 +72,15 @@ public class SQLiteManager implements DBManager {
             stmt1 = c.createStatement();
             String sql2 = "CREATE TABLE drugs " + "(id     INTEGER  PRIMARY KEY AUTOINCREMENT,"
                     + " name   TEXT   NOT NULL," + "duration INTEGER NOT NULL)";
+           
 
             stmt1.executeUpdate(sql2);
             stmt1 = c.createStatement();
             String sql3 = "CREATE TABLE patientDrug " + "(patientId     INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
                     + "drugId     INTEGER  REFERENCES drugs(id) ON UPDATE CASCADE ON DELETE SET NULL, " + "PRIMARY KEY(patientId,drugId))";
             stmt1.executeUpdate(sql3);
+            
+            
             stmt1 = c.createStatement();
             String sql4 = "CREATE TABLE comorbidity " + "(id     INTEGER  PRIMARY KEY AUTOINCREMENT,"
                     + " name   TEXT   NOT NULL)";
@@ -86,7 +91,7 @@ public class SQLiteManager implements DBManager {
             
             stmt1.executeUpdate(sql5);
             stmt1 = c.createStatement();
-            String sql6 = "CREATE TABLE patientComorbdity " + "(patientId     INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
+            String sql6 = "CREATE TABLE patientComorbidity " + "(patientId     INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
                     + "comorbidityId     INTEGER  REFERENCES comorbidity(id) ON UPDATE CASCADE ON DELETE SET NULL, " + "PRIMARY KEY(patientId,comorbidityId))";
             
             stmt1.executeUpdate(sql6);

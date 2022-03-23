@@ -7,6 +7,8 @@ package pojos;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
@@ -14,25 +16,30 @@ import java.util.List;
  */
 public class Patient {
     
-   private Integer id;
+   private SimpleIntegerProperty id;
    public boolean pregnant ;
    public Gender gender;
-   public String fullName;
+   public SimpleStringProperty fullName;
    public Age age;
-   public int age2;
+   public SimpleIntegerProperty age2;
    public boolean gender2;
-   private String disease;
-   private List<String> comorbidity = new ArrayList<>();
-   private List<String> medicines = new ArrayList<>();
+   private SimpleStringProperty heartdisease;
+   private ArrayList<Comorbidity> comorbidity = new ArrayList<>();
+   private ArrayList<Drug> drugs = new ArrayList<>();
+    private ArrayList<Treatment> treatments = new ArrayList<>();
    //private List<String> treatments = new ArrayList<>();
-   private String treatments;
+   
 
-    public Patient(boolean pregnant, Gender gender, String fullName, int age2, boolean gender2) {
+    public Patient(String fullName,String heartdisease, int age2,boolean gender,boolean pregnant) {
         this.pregnant = pregnant;
-        this.gender = gender;
-        this.fullName = fullName;
-        this.age2 = age2;
-        this.gender2 = gender2;
+        this.heartdisease= new SimpleStringProperty(heartdisease);
+        this.fullName = new SimpleStringProperty(fullName);
+        this.age2 = new SimpleIntegerProperty(age2);
+        this.gender2 = gender;
+    }
+
+    public Patient(int i, String juan) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     
@@ -53,11 +60,11 @@ public class Patient {
     }
 
     public int getAge2() {
-        return age2;
+        return age2.get();
     }
 
     public void setAge2(int age2) {
-        this.age2 = age2;
+        this.age2 = new SimpleIntegerProperty(age2);
     }
 
     public boolean getGender2() {
@@ -69,11 +76,11 @@ public class Patient {
     }
    
     public String getFullName() {
-        return fullName;
+        return fullName.get();
     }
 
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        this.fullName = new SimpleStringProperty(fullName);
     }
     public boolean getPregnant() {
         return pregnant;
@@ -83,45 +90,45 @@ public class Patient {
         this.pregnant = pregnant;
     }
 
-    public String getDisease() {
-        return disease;
+    public String getHeartDisease() {
+        return heartdisease.get();
     }
 
-    public void setDisease(String disease) {
-        this.disease = disease;
+    public void setHeartDisease(String disease) {
+        this.heartdisease = new SimpleStringProperty(disease);
     }
 
-    public List<String> getComorbidity() {
+    public ArrayList<Comorbidity> getComorbidity() {
         return comorbidity;
     }
 
-    public void setComorbidity(List<String> comorbidity) {
+    public void setComorbidity(ArrayList<Comorbidity> comorbidity) {
         this.comorbidity = comorbidity;
     }
 
-    public List<String> getMedicines() {
-        return medicines;
+    public ArrayList<Drug> getDrugs() {
+        return drugs;
     }
 
-    public void setMedicines(List<String> medicines) {
-        this.medicines = medicines;
+    public void setDrugs(ArrayList<Drug> drugs) {
+        this.drugs = drugs;
     }
 
-    public String getTreatments() {
+    public ArrayList<Treatment> getTreatments() {
         return treatments;
     }
 
-    public void setTreatments(String treatments) {
+    public void setTreatments(ArrayList<Treatment> treatments) {
         this.treatments = treatments;
     }
     
 
     
-    public Patient(int newPatientId, String patientName, String patientDisease,
+    public Patient(Integer newPatientId, String patientName, String patientDisease,
             Boolean patientGender, Integer patientAge, Boolean patientPregnant){
-       this.id = newPatientId;
-       this.fullName= patientName;
-       this.disease = patientDisease;
+       this.id = new SimpleIntegerProperty(newPatientId);
+       this.fullName= new SimpleStringProperty(patientName);
+       this.heartdisease = new SimpleStringProperty(patientDisease);
        this.gender = Gender.genderFromBoolean(patientGender);
        this.age = Age.ageFromInteger(patientAge);
        this.pregnant = patientPregnant;       
@@ -135,14 +142,24 @@ public class Patient {
     public Patient(boolean pregnant, boolean gender, String fullName, int age, String disease) {
         this.pregnant = pregnant;
         this.gender = Gender.genderFromBoolean(gender);
-        this.fullName = fullName;
+        this.fullName = new SimpleStringProperty(fullName);
         this.age = Age.ageFromInteger(age);
-        this.disease = disease;
+        this.heartdisease = new SimpleStringProperty(disease);
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" + "id=" + id + ", pregnant=" + pregnant + ", fullName=" + fullName + ", heartdisease=" + heartdisease + ", comorbidity=" + comorbidity + ", treatments=" + treatments + '}';
+    }
+
     
     
    
     public Patient() {
+    }
+
+    public Integer getId() {
+      return this.id.get();
     }
     
    

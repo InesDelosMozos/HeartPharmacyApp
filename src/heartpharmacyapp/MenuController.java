@@ -46,7 +46,7 @@ public class MenuController {
     @FXML
     void TreatmentScreen(ActionEvent event) {
  try{
-	  Parent root = FXMLLoader.load(getClass().getResource("newPatient.fxml")); //cambiar fxml cuando este creado  
+	  Parent root = FXMLLoader.load(getClass().getResource("listpatient.fxml")); //cambiar fxml cuando este creado  
 	  Scene scene = new Scene(root);
 	  Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	  		

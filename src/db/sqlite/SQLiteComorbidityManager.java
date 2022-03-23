@@ -27,6 +27,11 @@ public class SQLiteComorbidityManager implements ComorbidityManager {
         this.c = c;
     }
     
+    public SQLiteComorbidityManager(){
+        super();
+        
+    }
+    
     public void add(String comorbidity) {
         try {
             String sql = "INSERT INTO comorbidity (name "
@@ -41,26 +46,22 @@ public class SQLiteComorbidityManager implements ComorbidityManager {
         }
     }
     
-    public List<Comorbidity> getComorbiditiesFromPatient(int patientId) {
-        List<Comorbidity> comorbidityList = new ArrayList();
+   
+    
+    @Override
+     public ArrayList<String> getComorbiditiesFromPatient(int patientId) {
+        ArrayList<String> comorbidityList = new ArrayList();
         try {
-            String sql = "SELECT * FROM doctors AS d JOIN doctorPatients AS dp ON d.id = dp.doctorId "
-                    + "JOIN patients AS p ON dp.patientId=p.id "
-                    + "WHERE d.id = ?";
+            String sql = "SELECT * FROM patients AS p JOIN patientComorbidity AS pc ON p.id = pc.patientId "
+                    + "JOIN comorbidity AS c ON pc.comorbidityId=c.id "
+                    + "WHERE p.id = ?";
             PreparedStatement p = c.prepareStatement(sql);
-            p.setInt(1, doctorId);
+            p.setInt(1, patientId);
             ResultSet rs = p.executeQuery();
-            boolean productCreated = false;
             while (rs.next()) {
-                int patientId = rs.getInt(6);
-                String full_name = rs.getString(7);
-                int age = rs.getInt(8);
-                Float weight = rs.getFloat(9);
-                Float height = rs.getFloat(10);
-                String gender = rs.getString(11);
-                String nameuser = rs.getString(12);
-                Patient newPatient = new Patient(patientId, full_name, age, weight, height, gender, nameuser);
-                patientList.add(newPatient);
+                int comorbidityId = rs.getInt(10);
+                String name = rs.getString(11);
+                comorbidityList.add(name);
 
             }
         } catch (SQLException e) {
@@ -69,6 +70,7 @@ public class SQLiteComorbidityManager implements ComorbidityManager {
 
         return comorbidityList;
     }
+
 
     
     
