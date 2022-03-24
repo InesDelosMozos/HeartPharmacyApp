@@ -29,7 +29,7 @@ public class BitalinoDemo {
 
     public static List <Integer> arrayECG = new ArrayList <Integer>();
     
-    public static void main(Socket socket) {
+    public static List<Integer> main() {
 
         BITalino bitalino = null;
         try {
@@ -40,13 +40,13 @@ public class BitalinoDemo {
             System.out.println(devices);
 
             //You need TO CHANGE THE MAC ADDRESS
-            String macAddress = "98:D3:51:FD:9C:72";
+            String macAddress = "98:D3:C1:FD:2F:EC";
             int SamplingRate = 10;
             bitalino.open(macAddress, SamplingRate);
 
             // start acquisition on analog channels A2 and A6
             //If you want A1, A3 and A4 you should use {0,2,3}
-            int[] channelsToAcquire = {0, 1}; //A1 --> EMG, A2-->ECG  
+            int[] channelsToAcquire = {1}; //A1 --> EMG, A2-->ECG  
             bitalino.start(channelsToAcquire);
             
 
@@ -71,6 +71,7 @@ public class BitalinoDemo {
                 for (int i = 0; i < frame.length; i++) {
                    
                     arrayECG.add(frame[i].analog[1]);
+                    System.out.println(frame[i].analog[1]);
                     
                     
 
@@ -96,10 +97,11 @@ public class BitalinoDemo {
             } catch (BITalinoException ex) {
                 Logger.getLogger(BitalinoDemo.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }return arrayECG;
         
 
     }
+
     
     
 

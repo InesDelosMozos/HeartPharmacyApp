@@ -49,7 +49,6 @@ import BITalino.BitalinoDemo;
 import BITalino.DeviceDiscoverer;
 import BITalino.Frame;
 
-
 public class ListPatientController implements Initializable {
 
     @FXML
@@ -60,7 +59,7 @@ public class ListPatientController implements Initializable {
     @FXML
     private TableColumn<Patient, String> nameCol;
     @FXML
-    private Button editButton, backtoMenu, obtainTreatmentButton, recordEcgButton;
+    private Button editButton, backtoMenu, obtainTreatmentButton, recordEcgButton, showECG;
 
     @FXML
     private TableColumn<Patient, String> heartDiseaseCol;
@@ -75,7 +74,6 @@ public class ListPatientController implements Initializable {
     private static ComorbidityManager comorbiditymanager;
     private static TreatmentManager treatmentmanager;
     private static SceneChanger sc;
- 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -89,7 +87,7 @@ public class ListPatientController implements Initializable {
 
         idCol.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("fullName"));
-        heartDiseaseCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("heartDisease"));
+        heartDiseaseCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("heartdisease"));
 
         // set the table editable in order to update it
         patientTable.setEditable(true);
@@ -225,13 +223,26 @@ public class ListPatientController implements Initializable {
     }
 
     public Patient formatearPatient(Patient p) {
-
+        System.out.println(p.getAge2());
         p.setAge(Age.ageFromInteger(p.getAge2()));
         p.setGender(Gender.genderFromBoolean(p.getGender2()));
-        Patient p1 = new Patient(p.getHeartDisease(), p.getAge(), p.getGender(), p.getString_comorbidities(),p.getString_treatments());
-        return p1;
+        //Patient p1 = new Patient(p.getHeartdisease(), p.getAge(), p.getGender(), p.getString_comorbidities(),p.getString_treatments());
+        return p;
     }
-    
-    
 
+    @FXML
+    void recordECG(ActionEvent event) {
+        Patient p1 = this.patientTable.getSelectionModel().getSelectedItem();
+        sc = new SceneChanger();
+        ECGRecordingController ecgcontrol = new ECGRecordingController();
+        sc.changeScenestoECG(event, "ecgrecording.fxml", p1, ecgcontrol);
+    }
+
+    @FXML
+    void showECG(ActionEvent event) {
+        Patient p1 = this.patientTable.getSelectionModel().getSelectedItem();
+        sc = new SceneChanger();
+        ECGRecordingController ecgcontrol = new ECGRecordingController();
+        sc.changeScenestoECG(event, "selectEcg.fxml", p1, ecgcontrol);
+    }
 }

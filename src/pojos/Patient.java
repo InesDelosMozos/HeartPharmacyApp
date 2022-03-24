@@ -32,10 +32,7 @@ public class Patient {
    private ArrayList<String> string_comorbidities = new ArrayList<>();
    private String drug;
 
-    public Patient(String heartDisease, Age age, Gender gender, ArrayList<String> string_comorbidities, ArrayList<String> string_treatments) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     public String getDrug() {
         return drug;
     }
@@ -130,11 +127,11 @@ public class Patient {
         this.pregnant = pregnant;
     }
 
-    public String getHeartDisease() {
+    public String getHeartdisease() {
         return heartdisease.get();
     }
 
-    public void setHeartDisease(String disease) {
+    public void setHeartdisease(String disease) {
         this.heartdisease = new SimpleStringProperty(disease);
     }
 
@@ -170,7 +167,7 @@ public class Patient {
        this.fullName= new SimpleStringProperty(patientName);
        this.heartdisease = new SimpleStringProperty(patientDisease);
        this.gender = Gender.genderFromBoolean(patientGender);
-       this.age = Age.ageFromInteger(patientAge);
+       this.age2 = new SimpleIntegerProperty(patientAge);
        this.pregnant = patientPregnant;       
     }
     /*

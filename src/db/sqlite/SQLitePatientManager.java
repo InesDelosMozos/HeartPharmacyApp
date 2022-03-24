@@ -37,7 +37,7 @@ public class SQLitePatientManager implements PatientManager {
                     + "VALUES (?,?,?,?,?)";
             PreparedStatement prep = c.prepareStatement(sql);
             prep.setString(1, patient.getFullName());
-            prep.setString(2, patient.getHeartDisease());
+            prep.setString(2, patient.getHeartdisease());
             prep.setInt(3, patient.getAge2());
             prep.setBoolean(4, patient.getGender2());
             prep.setBoolean(5, patient.getPregnant());
@@ -107,6 +107,7 @@ public class SQLitePatientManager implements PatientManager {
 
                 Patient newpatient = new Patient(id, patientName, patientDisease,
                         patientGender, patientAge, patientPregnant);
+                System.out.println(patientAge);
                 patientsList.add(newpatient);
             }
         } catch (SQLException e) {

@@ -17,14 +17,14 @@
  */
 
 
-import diagnosis.Patient
+import pojos.Patient
 
 
 rule "Losartan"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("heart failure"), age != Age.CHILD,pregnant == false,
+    p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD,pregnant == false,
     !string_treatments.contains("Hypersensitivity to Losartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("severe liver failure"))
 
 then
@@ -35,7 +35,7 @@ rule "Losartan2"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("high blood pressure"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("Hypersensitivity to Losartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("severe liver failure"))
 
 then
@@ -46,7 +46,7 @@ rule "Olmeosartan"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("high blood pressure"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("Hypersensitivity to Olmesartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("jaundice"),!string_comorbidities.contains("biliary obstruction"))
 
 then
@@ -57,7 +57,7 @@ rule "Olmeosartan2"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("heart failure"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("Hypersensitivity to Olmesartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("jaundice"),!string_comorbidities.contains("biliary obstruction"))
 
 then
@@ -68,7 +68,7 @@ rule "Telmisartan"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("heart failure"), age != Age.CHILD, age != Age.YOUNG, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD, age != Age.YOUNG, pregnant == false,
     !string_treatments.contains("angiotensin converting enzyme (ACE) inhibitor"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("liver disease"))
 
 then
@@ -79,7 +79,7 @@ rule "Telmisartan2"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("high blood pressure"), age != Age.CHILD, age != Age.YOUNG, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, age != Age.YOUNG, pregnant == false,
     !string_treatments.contains("angiotensin converting enzyme (ACE) inhibitor"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("liver disease"))
 
 then
@@ -90,7 +90,7 @@ rule "Valsartan"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("heart failure"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("Hypersensitivity to simvastatin"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("liver disease"))
 
 then
@@ -101,7 +101,7 @@ rule "Valsartan2"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("high blood pressure"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("Hypersensitivity to simvastatin"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("liver disease"))
 
 then
@@ -112,7 +112,7 @@ rule "Apixaban"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("clots"), age != Age.CHILD, age != Age.YOUNG,age != Age.ELDER, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("clots"), age != Age.CHILD, age != Age.YOUNG,age != Age.ELDER, pregnant == false,
     !string_treatments.contains("Hypersensitivity to apixaban"),!string_treatments.contains("string_treatments to prevent blood clotting"), !string_comorbidities.contains("bleed excessively"), !string_comorbidities.contains("disease in a body organ"),!string_comorbidities.contains("recent/active ulcer"),!string_comorbidities.contains("recent brain bleed"),!string_comorbidities.contains("liver disease"))
 
 then
@@ -123,7 +123,7 @@ rule "Dabigatran"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("clots"), age != Age.YOUNG,age != Age.ADULT, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("clots"), age != Age.YOUNG,age != Age.ADULT, pregnant == false,
     !string_treatments.contains("Hypersensitivity to dabigatran"), !string_comorbidities.contains("bleeding problems "), !string_comorbidities.contains("stomach ulcer"),!string_comorbidities.contains("kidney disease"),!string_comorbidities.contains("heart valve replaced"))
 
 then
@@ -134,7 +134,7 @@ rule "Edoxaban"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
     !string_treatments.contains("Hypersensitivity to edoxaban"),!string_treatments.contains("amiodarone"),!string_treatments.contains("atorvastatin"),!string_treatments.contains("cyclosporine"),!string_treatments.contains("digoxin"),!string_treatments.contains("erythromycin"),!string_treatments.contains("esomeprazole"),!string_treatments.contains("ketoconazole"),!string_treatments.contains("quinidine"),!string_treatments.contains("rifampin"),!string_treatments.contains("amiodarone "),!string_treatments.contains("escitalopram"),!string_treatments.contains("fluoxetine"),!string_treatments.contains("fluvoxamine"),
     !string_treatments.contains("paroxetine"),!string_treatments.contains("sertraline"),!string_treatments.contains("serotonin-norepinephrine reuptake inhibitors (SNRIs)"),!string_treatments.contains("duloxetine"),!string_treatments.contains("levomilnacipran"),!string_treatments.contains("milnacipran"),!string_treatments.contains("venlafaxine"),!string_treatments.contains("verapamil "), !string_comorbidities.contains("heavy bleeding"), !string_comorbidities.contains("mechanical heart valve"),!string_comorbidities.contains("stomach cancer"),!string_comorbidities.contains("liver disease"),!string_comorbidities.contains("antiphospholipid syndrome"))
 
@@ -146,7 +146,7 @@ rule "Heparin"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
     !string_treatments.contains("Hypersensitivity to heparin"),!string_treatments.contains("allergic to beef or pork"),!string_comorbidities.contains("low platelets"), !string_comorbidities.contains("heart attack"),!string_comorbidities.contains("hemophilia"),!string_comorbidities.contains("cancer"))
 
 then
@@ -157,7 +157,7 @@ rule "Rivaroxaban"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
     !string_treatments.contains("Hypersensitivity to rivaroxaban"),
     !string_treatments.contains("warfarin"),!string_treatments.contains("dabigatran"),
     !string_treatments.contains("apixaban"),!string_treatments.contains(" heparin"),
@@ -172,7 +172,7 @@ rule "aspirine"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("treatment with methotrexate"),!string_comorbidities.contains("acute gastroduodenal ulcer"),
     !string_comorbidities.contains("asma"), !string_comorbidities.contains("mastocytosis"),
     !string_comorbidities.contains("coagulation disorders"))
@@ -187,7 +187,7 @@ rule "clopidrogel"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"),
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"),
     !string_treatments.contains("hypersensitivity to clopidrogel"),
     !string_comorbidities.contains("Severe liver failure"), !string_comorbidities.contains("Active pathologic bleeding"))
  
@@ -202,7 +202,7 @@ rule "dipiridamol"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), pregnant == false,
     !string_treatments.contains("hypersensitivity to dipyridamole"),
     !string_treatments.contains("hereditary fructose intolerance"),
     !string_treatments.contains("impaired glucose absorption"),
@@ -221,7 +221,7 @@ rule "prasugrel"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.ELDER, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.ELDER, pregnant == false,
     !string_treatments.contains("hypersensitivity acetylsalicylic acid"),
     !string_treatments.contains("hypersensitivity to Prasugrel Virfuton"),
     !string_treatments.contains("hereditary galactose intolerance"),
@@ -245,7 +245,7 @@ rule "ticagrelor"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), pregnant == false,
     !string_treatments.contains("hypersensitivity ticagrelor"),
     !string_treatments.contains("strong CYP3A4 inhibitors"),
     !string_comorbidities.contains("active pathologic bleeding"),
@@ -261,7 +261,7 @@ rule "Benazepril"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("taking sacubitril"), !string_treatments.contains("allergy to ACE inhibitor"),
     !string_comorbidities.contains("Diabetes"), !string_comorbidities.contains("angioedema"),
     !string_comorbidities.contains("kydney disease"))
@@ -276,7 +276,7 @@ rule "Benazepril2"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("stroke"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("stroke"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("taking sacubitril"), !string_treatments.contains("allergy to ACE inhibitor"),
     !string_comorbidities.contains("Diabetes"), !string_comorbidities.contains("angioedema"),
     !string_comorbidities.contains("kydney disease"))
@@ -291,7 +291,7 @@ rule "Captopril"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("taking sacubitril"), !string_treatments.contains("High blood pressure drugs"),
     !string_treatments.contains("Diuretics"),!string_treatments.contains("Potassium supplements"),
     !string_treatments.contains("potassium-based salts"),!string_treatments.contains("Mood stabilizers"),
@@ -309,7 +309,7 @@ rule "Enalapril"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("anesthetic,"),!string_treatments.contains(" pain drugs"),!string_treatments.contains("heart and blood pressure drugs"),
     !string_treatments.contains("potassium supplements"),!string_treatments.contains("diuretics"), !string_treatments.contains("lithium"),
     !string_treatments.contains("Drugs used to prevent rejection of an organ transplant"),!string_treatments.contains("neprilysin inhibitors"),
@@ -326,7 +326,7 @@ rule "Iosartan"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("electrolyte imbalance"),!string_treatments.contains("low-salt diet"),
     !string_treatments.contains("dehydrated"),!string_comorbidities.contains("diabetes"),
     !string_comorbidities.contains("kidney disease"), !string_comorbidities.contains("liver disease"),
@@ -341,7 +341,7 @@ rule "Heparin3"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), pregnant == false,
     !string_treatments.contains("blood thinner "),!string_comorbidities.contains("bacterial endocarditis"),
     !string_comorbidities.contains("hypertension"), !string_comorbidities.contains("bleeding, blood clotting disorder"),
     !string_comorbidities.contains("liver disease"))
@@ -356,7 +356,7 @@ rule "Lisinopril"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("aliskiren, sacubitril, fluid imbalances"),!string_treatments.contains("sacubitril"),
     !string_treatments.contains("fluid imbalances") ,!string_comorbidities.contains("hypertrophic cardiomyopath"),
     !string_comorbidities.contains("syndrome of inappropriate antidiuretic hormone"), !string_comorbidities.contains("renal artery stenosis"),
@@ -373,7 +373,7 @@ rule "Ramipril "
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("myocardial infarction"), pregnant == false,
+    p1: Patient  (getHeartdisease().equals("myocardial infarction"), pregnant == false,
     !string_treatments.contains("allergy to ACE inhibitors, anti-inflammatory string_treatments, asthma, diuretics, steroid, procainamide, racecadotril, lithium"),
     !string_treatments.contains("anti-inflammatory string_treatments"), !string_treatments.contains("asthma"), !string_treatments.contains("diuretics"),
     !string_treatments.contains("steroid, "), !string_treatments.contains("procainamide"), !string_treatments.contains("racecadotril"), !string_treatments.contains("lithium"),
@@ -389,7 +389,7 @@ rule "Olmesartan3"
     //salience 15
     dialect "java"
     when
-    p1: Patient  (heartdisease.equals("heart attack "), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("heart attack "), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("aliskiren"),!string_treatments.contains("string_treatments to lower blood pressure"),
     !string_treatments.contains("ACE inhibitor"),!string_treatments.contains("non-steroidal anti-inflammatory drugs"),
     !string_treatments.contains(" diuretics"),!string_treatments.contains("lithium, heparin"),
@@ -407,7 +407,7 @@ rule "fluvastatin"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("cholesterol"), age != Age.ADULT, age != Age.ELDER,
+        p1: Patient  (getHeartdisease().equals("cholesterol"), age != Age.ADULT, age != Age.ELDER,
     !string_treatments.contains("fluvastatin"),!string_treatments.contains("warfarin"), !string_treatments.contains("cimetidine"), !string_treatments.contains("colchicine"), !string_treatments.contains("cyclosporine"), !string_treatments.contains("diclofenac"), !string_treatments.contains("digoxin"), !string_treatments.contains("erythromycin"),
 !string_treatments.contains("fluconazole"), !string_treatments.contains("glyburide"), !string_treatments.contains("ketoconazole"), !string_treatments.contains("omeprazole"),!string_comorbidities.contains("coronary heart diseas"),
 !string_comorbidities.contains("stroke"), !string_comorbidities.contains("peripheral vascular disease"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("high blood pressure"))
@@ -421,7 +421,7 @@ rule "pitavastatin"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("cholesterol"), age != Age.CHILD, age != Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("cholesterol"), age != Age.CHILD, age != Age.YOUNG,
     !string_treatments.contains("pitavastatin"),!string_treatments.contains("cyclosporine"), !string_treatments.contains("fenofibrate"), !string_treatments.contains("erythromycin"), !string_treatments.contains("gemfibrozil"), !string_treatments.contains("niacin"), !string_treatments.contains("Niacor"), !string_treatments.contains("Nrifampicin"),
 !string_treatments.contains("ritonavir"), !string_treatments.contains("warfarin"), !string_comorbidities.contains("thyroid disease"),
 !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("liver disease"), !string_comorbidities.contains("kidney disease"), !string_comorbidities.contains("obesity"))
@@ -435,7 +435,7 @@ rule "pravastatin"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("cholesterol"), age != Age.ADULT, age != Age.ELDER,
+        p1: Patient  (getHeartdisease().equals("cholesterol"), age != Age.ADULT, age != Age.ELDER,
     !string_treatments.contains("pravastatin"),!string_treatments.contains("antacids"), !string_treatments.contains("fluconazole"), !string_treatments.contains("ketoconazole"), !string_treatments.contains("boceprevir"), !string_treatments.contains("cimetidine"), !string_treatments.contains("colchicine"), !string_treatments.contains("cyclosporine"),
 !string_treatments.contains("digoxin"), !string_treatments.contains("diltiazem"), !string_treatments.contains("diltiazem"), !string_treatments.contains("erythromycin"), !string_treatments.contains("warfarin"), !string_comorbidities.contains("coronary heart disease"),
 !string_comorbidities.contains("stroke"), !string_comorbidities.contains("peripheral vascular disease"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("high blood pressure"))
@@ -449,7 +449,7 @@ rule "azilsartan"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("hypertension"), age != Age.CHILD, age != Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("hypertension"), age != Age.CHILD, age != Age.YOUNG,
     !string_treatments.contains("azilsartan"),!string_treatments.contains("aliskiren"), !string_treatments.contains("benazepril"), !string_treatments.contains("captopril"), !string_treatments.contains("enalapril"), !string_treatments.contains("fosinopril"), !string_treatments.contains("lisinopril"), !string_treatments.contains("moexipril"),
 !string_treatments.contains("perindopril"), !string_treatments.contains("trandolapril"), !string_treatments.contains("aspirin"), !string_treatments.contains("ibuprofen"), !string_treatments.contains("naproxen"), !string_comorbidities.contains("coronary artery disease"),
 !string_comorbidities.contains("stroke"), !string_comorbidities.contains("heart failure"), !string_comorbidities.contains("chronic kidney disease"), !string_comorbidities.contains("chronic obstructive pulmonary disease"))
@@ -463,7 +463,7 @@ rule "eprosartan"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("hypertension"), age != Age.CHILD, age != Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("hypertension"), age != Age.CHILD, age != Age.YOUNG,
     !string_treatments.contains("eprosartan"),!string_treatments.contains("aliskiren"), !string_treatments.contains("benazepril"), !string_treatments.contains("captopril"), !string_treatments.contains("enalapril"), !string_treatments.contains("fosinopril"), !string_treatments.contains("lisinopril"), !string_treatments.contains("moexipril"),
 !string_treatments.contains("perindopril"), !string_treatments.contains("trandolapril"), !string_treatments.contains("aspirin"), !string_treatments.contains("ibuprofen"), !string_treatments.contains("naproxen"), !string_comorbidities.contains("diabetes"),
 !string_comorbidities.contains("obesity"), !string_comorbidities.contains("hyperlipidemia"), !string_comorbidities.contains("metabolic syndrome"), !string_comorbidities.contains("chronic obstructive pulmonary disease"))
@@ -477,7 +477,7 @@ rule "candesartan"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("hypertension"), age != Age.ADULT, age != Age.ELDER,
+        p1: Patient  (getHeartdisease().equals("hypertension"), age != Age.ADULT, age != Age.ELDER,
     !string_treatments.contains("candesartan"),!string_treatments.contains("aliskiren"), !string_treatments.contains("benazepril"), !string_treatments.contains("captopril"), !string_treatments.contains("enalapril"), !string_treatments.contains("fosinopril"), !string_treatments.contains("lisinopril"), !string_treatments.contains("moexipril"),
 !string_treatments.contains("perindopril"), !string_treatments.contains("trandolapril"), !string_treatments.contains("aspirin"), !string_treatments.contains("ibuprofen"), !string_treatments.contains("naproxen"), !string_treatments.contains("diuretics"), !string_comorbidities.contains("diabetes"),
 !string_comorbidities.contains("renal insuffiency"), !string_comorbidities.contains("central apnea syndrom"), !string_comorbidities.contains("anemia"), !string_comorbidities.contains("chronic obstructive pulmonary disease"))
@@ -491,7 +491,7 @@ rule "digoxin1"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("heart failure"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD,
     !string_treatments.contains("diuretics"),!string_treatments.contains("corticosteroids"), !string_treatments.contains("antidepressants"), !string_comorbidities.contains("allergic to glycosides"),
 !string_comorbidities.contains("Stokes-Adams"), !string_comorbidities.contains("Wolf-Parkinson-White"), !string_comorbidities.contains("obstructive cardiomyopathy"))
 
@@ -504,7 +504,7 @@ rule "digoxin2"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("arrythmia"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("arrythmia"), age != Age.CHILD,
     !string_treatments.contains("diuretics"),!string_treatments.contains("corticosteroids"), !string_treatments.contains("antidepressants"), !string_comorbidities.contains("allergic to glycosides"),
 !string_comorbidities.contains("Stokes-Adams"), !string_comorbidities.contains("Wolf-Parkinson-White"), !string_comorbidities.contains("obstructive cardiomyopathy"))
 
@@ -518,7 +518,7 @@ rule "nitrostat1"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("angina pectoris"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("angina pectoris"), age != Age.CHILD,
     !string_treatments.contains("viagra"),!string_treatments.contains("cialis"), !string_treatments.contains("levitra"), !string_treatments.contains("adempas"), !string_comorbidities.contains("allergic to nitrates"),
 !string_comorbidities.contains("recent heart attack"), !string_comorbidities.contains("anemia"), !string_comorbidities.contains("increases pressure in the head"))
 
@@ -533,7 +533,7 @@ rule "idodril1"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("angina pectoris"), age != Age.CHILD, age !=Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("angina pectoris"), age != Age.CHILD, age !=Age.YOUNG,
     !string_treatments.contains("noradrenaline"),!string_treatments.contains("acetylcholine"), !string_treatments.contains("tricyclic"), !string_comorbidities.contains("allergic to nitrates"),
 !string_comorbidities.contains("low blood pressure"), !string_comorbidities.contains("anemia"), !string_comorbidities.contains("increases pressure in the head"), !string_comorbidities.contains("hemorrhage"))
 
@@ -546,7 +546,7 @@ rule "idodril2"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("heart failure"), age != Age.CHILD, age !=Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD, age !=Age.YOUNG,
     !string_treatments.contains("noradrenaline"),!string_treatments.contains("acetylcholine"), !string_treatments.contains("tricyclic"), !string_comorbidities.contains("allergic to nitrates"),
 !string_comorbidities.contains("low blood pressure"), !string_comorbidities.contains("anemia"), !string_comorbidities.contains("increases pressure in the head"), !string_comorbidities.contains("hemorrhage"))
 
@@ -560,7 +560,7 @@ rule "acebutolol1"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("angina pectoris"), age != Age.CHILD, age !=Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("angina pectoris"), age != Age.CHILD, age !=Age.YOUNG,
     !string_treatments.contains("clonidine"),!string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("NSAIDs"), !string_treatments.contains("antipsychotic"),!string_comorbidities.contains("low heartbeat"),
 !string_comorbidities.contains("low blood pressure"), !string_comorbidities.contains("tumor on adrenal gland"), !string_comorbidities.contains("asthma"))
 
@@ -573,7 +573,7 @@ rule "acebutolol2"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("high blood pressure"), age != Age.CHILD, age !=Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, age !=Age.YOUNG,
     !string_treatments.contains("clonidine"),!string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("NSAIDs"), !string_treatments.contains("antipsychotic"),!string_comorbidities.contains("low heartbeat"),
 !string_comorbidities.contains("low blood pressure"), !string_comorbidities.contains("tumor on adrenal gland"), !string_comorbidities.contains("asthma"))
 
@@ -586,7 +586,7 @@ rule "acebutolol3"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("arrythmia"), age != Age.CHILD, age !=Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("arrythmia"), age != Age.CHILD, age !=Age.YOUNG,
     !string_treatments.contains("clonidine"),!string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("NSAIDs"), !string_treatments.contains("antipsychotic"),!string_comorbidities.contains("low heartbeat"),
 !string_comorbidities.contains("low blood pressure"), !string_comorbidities.contains("tumor on adrenal gland"), !string_comorbidities.contains("asthma"))
 
@@ -600,7 +600,7 @@ rule "atenolol1"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("angina pectoris"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("angina pectoris"), age != Age.CHILD,
     !string_treatments.contains("clonidine"),!string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("digoxin"), !string_treatments.contains("ibuprofen"),!string_comorbidities.contains("heart blockage"),
 !string_comorbidities.contains("acidosis"), !string_comorbidities.contains("tumor on adrenal gland"), !string_comorbidities.contains("asthma"))
 
@@ -613,7 +613,7 @@ rule "atenolol2"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("high blood pressure"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD,
     !string_treatments.contains("clonidine"),!string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("digoxin"), !string_treatments.contains("ibuprofen"),!string_comorbidities.contains("heart blockage"),
 !string_comorbidities.contains("acidosis"), !string_comorbidities.contains("tumor on adrenal gland"), !string_comorbidities.contains("asthma"))
 
@@ -626,7 +626,7 @@ rule "atenolol3"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("arrythmia"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("arrythmia"), age != Age.CHILD,
     !string_treatments.contains("clonidine"),!string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("digoxin"), !string_treatments.contains("ibuprofen"),!string_comorbidities.contains("heart blockage"),
 !string_comorbidities.contains("acidosis"), !string_comorbidities.contains("tumor on adrenal gland"), !string_comorbidities.contains("asthma"))
 
@@ -639,7 +639,7 @@ rule "atenolol4"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("infarction"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("infarction"), age != Age.CHILD,
     !string_treatments.contains("clonidine"),!string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("digoxin"), !string_treatments.contains("ibuprofen"),!string_comorbidities.contains("heart blockage"),
 !string_comorbidities.contains("acidosis"), !string_comorbidities.contains("tumor on adrenal gland"), !string_comorbidities.contains("asthma"))
 
@@ -654,7 +654,7 @@ rule "bisoprolol1"
     //salience 15
     dialect "java"
 when
-    p1: Patient  (heartdisease.equals("heart failure"), age != Age.CHILD, pregnant == false,
+    p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD, pregnant == false,
 !string_treatments.contains("clonidine"),!string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("digoxin"), !string_treatments.contains("ibuprofen"),!string_comorbidities.contains("allergic to bisoprolol fumarate"),
 !string_comorbidities.contains("circulation problems"), !string_comorbidities.contains("asthma"))
 
@@ -668,7 +668,7 @@ rule "nadolol1"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("angina pectoris"), age != Age.CHILD, pregnant == false,
+        p1: Patient  (getHeartdisease().equals("angina pectoris"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("adrenaline"), !string_treatments.contains("ibuprofen"),!string_comorbidities.contains("diabetes"),
 !string_comorbidities.contains("bronchitis"), !string_comorbidities.contains("emphysema"), !string_comorbidities.contains("kidney failure"), !string_comorbidities.contains("liver failure"))
 
@@ -681,7 +681,7 @@ rule "nadolol2"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("high blood pressure"), age != Age.CHILD, pregnant == false,
+        p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("verapamil"), !string_treatments.contains("insulin"),!string_treatments.contains("adrenaline"), !string_treatments.contains("ibuprofen"),!string_comorbidities.contains("diabetes"),
 !string_comorbidities.contains("bronchitis"), !string_comorbidities.contains("emphysema"), !string_comorbidities.contains("kidney failure"), !string_comorbidities.contains("liver failure"))
 
@@ -693,7 +693,7 @@ rule "warfarin"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
+        p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("salicylates"),!string_treatments.contains("sulphonamides"), !string_treatments.contains("hypoglycaemics"), !string_treatments.contains("barbiturate"), !string_treatments.contains("contraceptives"),
 !string_comorbidities.contains("Vitamin K deficiency"),!string_comorbidities.contains("Peptic ulcer"),!string_comorbidities.contains("Haemophilia"),!string_comorbidities.contains("Anaemia"),!string_comorbidities.contains("Hypertension"),
 !string_comorbidities.contains("Pericarditis"), !string_comorbidities.contains("Bacterial endocarditis"), !string_comorbidities.contains("Severe hepatic insufficiency"), !string_comorbidities.contains("Renal insufficiency"))
@@ -707,7 +707,7 @@ rule "warfarin2"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals(" "), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals(" "), age != Age.CHILD,
     !string_treatments.contains("salicylates"),!string_treatments.contains("sulphonamides"), !string_treatments.contains("hypoglycaemics"), !string_treatments.contains("barbiturate"), !string_treatments.contains("contraceptives"),
 !string_comorbidities.contains("vitamin k deficiency"),!string_comorbidities.contains("peptic ulcer"),!string_comorbidities.contains("haemophilia"),!string_comorbidities.contains("anaemia"),!string_comorbidities.contains("hypertension"),
 !string_comorbidities.contains("pericarditis"), !string_comorbidities.contains("bacterial endocarditis"), !string_comorbidities.contains("severe hepatic insufficiency"), !string_comorbidities.contains("renal insufficiency"))
@@ -721,7 +721,7 @@ rule "enoxaparin"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
+        p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("warfarin"),!string_treatments.contains("aspirin"), !string_treatments.contains("ibuprofen"), !string_treatments.contains("naproxen"), !string_treatments.contains("non-steroidal anti-inflammatory drug"),
 !string_comorbidities.contains("hypersensitivity to enoxaparin"),!string_comorbidities.contains("haemorrhage"),!string_comorbidities.contains("thrombocytopenia"),!string_comorbidities.contains("thrombosis"),
 !string_comorbidities.contains("septic endocarditis"))
@@ -735,7 +735,7 @@ rule "metropolol"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("hypertension"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("hypertension"), age != Age.CHILD,
     !string_treatments.contains("betablockers"),!string_treatments.contains("reserpine"), !string_treatments.contains("nitroglycerin"), !string_treatments.contains("antihyperensives"), !string_treatments.contains("calthium antagonists"),
 !string_treatments.contains("antirhymics"),!string_treatments.contains("quinidine"),!string_treatments.contains("amiodarone"),!string_treatments.contains("cimetidine"),!string_comorbidities.contains("sinus bradycardia"),
         !string_comorbidities.contains("first-degree major AV block"),!string_comorbidities.contains("cardiogenic shock"),!string_comorbidities.contains("heart failure"),!string_comorbidities.contains("altered liver function"))
@@ -749,7 +749,7 @@ rule "metropolol2"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("angina"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("angina"), age != Age.CHILD,
     !string_treatments.contains("betablockers"),!string_treatments.contains("reserpine"), !string_treatments.contains("nitroglycerin"), !string_treatments.contains("antihyperensives"), !string_treatments.contains("calthium antagonists"),
 !string_treatments.contains("antirhymics"),!string_treatments.contains("quinidine"),!string_treatments.contains("amiodarone"),!string_treatments.contains("cimetidine"),!string_comorbidities.contains("sinus bradycardia"),
         !string_comorbidities.contains("first-degree major AV block"),!string_comorbidities.contains("cardiogenic shock"),!string_comorbidities.contains("heart failure"),!string_comorbidities.contains("altered liver function"))
@@ -763,7 +763,7 @@ rule "metropolol3"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("arrythmias"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("arrythmias"), age != Age.CHILD,
     !string_treatments.contains("betablockers"),!string_treatments.contains("reserpine"), !string_treatments.contains("nitroglycerin"), !string_treatments.contains("antihyperensives"), !string_treatments.contains("calthium antagonists"),
 !string_treatments.contains("antirhymics"),!string_treatments.contains("quinidine"),!string_treatments.contains("amiodarone"),!string_treatments.contains("cimetidine"),!string_comorbidities.contains("sinus bradycardia"),
         !string_comorbidities.contains("first-degree major AV block"),!string_comorbidities.contains("cardiogenic shock"),!string_comorbidities.contains("heart failure"),!string_comorbidities.contains("altered liver function"))
@@ -777,7 +777,7 @@ rule "metropolol4"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("myocardial infarction"), age != Age.CHILD,
+        p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD,
     !string_treatments.contains("betablockers"),!string_treatments.contains("reserpine"), !string_treatments.contains("nitroglycerin"), !string_treatments.contains("antihyperensives"), !string_treatments.contains("calthium antagonists"),
 !string_treatments.contains("antirhymics"),!string_treatments.contains("quinidine"),!string_treatments.contains("amiodarone"),!string_treatments.contains("cimetidine"),!string_comorbidities.contains("sinus bradycardia"),
         !string_comorbidities.contains("first-degree major AV block"),!string_comorbidities.contains("cardiogenic shock"),!string_comorbidities.contains("heart failure"),!string_comorbidities.contains("altered liver function"))
@@ -791,7 +791,7 @@ rule "labetalol"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("angina"),
+        p1: Patient  (getHeartdisease().equals("angina"),
     !string_treatments.contains("halothane"),!string_treatments.contains("anaesthetics"), !string_treatments.contains("class I antiarrythmic agents"), !string_treatments.contains("calcium antagonists"), !string_treatments.contains("tricyclic antidepressants"),
 !string_treatments.contains("cimetidine"),!string_comorbidities.contains("aritroventricular block"),!string_comorbidities.contains("airway obstruction"), !string_comorbidities.contains("hypersensivity to labetalol"),!string_comorbidities.contains("peripheral vasoconstriction"),
         !string_comorbidities.contains("cardiogenic shock"),!string_comorbidities.contains("hypertension"),!string_comorbidities.contains("severe bradicardia"),!string_comorbidities.contains("asthma"))
@@ -805,7 +805,7 @@ rule "propanolol"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("angina"),
+        p1: Patient  (getHeartdisease().equals("angina"),
     !string_treatments.contains("cholestyramine"),!string_treatments.contains("colestipol"), !string_treatments.contains("warfarin"), !string_treatments.contains("antidepressant"), !string_treatments.contains("steroid"),
 !string_treatments.contains("non-steroidalantiinflammatory drugs"),!string_treatments.contains("aspirine"),!string_treatments.contains("ibuprofen"),!string_treatments.contains("naproxen"),
         !string_treatments.contains("calecoxib"),!string_treatments.contains("diclofenac"),!string_treatments.contains("indomethacin"),!string_treatments.contains("meloxicam"),!string_comorbidities.contains("hypersensitivity to propanolol"),
@@ -823,7 +823,7 @@ rule "propanolol2"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("hypertension"),
+        p1: Patient  (getHeartdisease().equals("hypertension"),
     !string_treatments.contains("cholestyramine"),!string_treatments.contains("colestipol"), !string_treatments.contains("warfarin"), !string_treatments.contains("antidepressant"), !string_treatments.contains("steroid"),
 !string_treatments.contains("non-steroidalantiinflammatory drugs"),!string_treatments.contains("aspirine"),!string_treatments.contains("ibuprofen"),!string_treatments.contains("naproxen"),
         !string_treatments.contains("calecoxib"),!string_treatments.contains("diclofenac"),!string_treatments.contains("indomethacin"),!string_treatments.contains("meloxicam"),!string_comorbidities.contains("hypersensitivity to propanolol"),
@@ -841,7 +841,7 @@ rule "propanolol3"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("hypertophic obstructive cardiomyopathy supraventricular cardiac arrythmia"),
+        p1: Patient  (getHeartdisease().equals("hypertophic obstructive cardiomyopathy supraventricular cardiac arrythmia"),
     !string_treatments.contains("cholestyramine"),!string_treatments.contains("colestipol"), !string_treatments.contains("warfarin"), !string_treatments.contains("antidepressant"), !string_treatments.contains("steroid"),
 !string_treatments.contains("non-steroidalantiinflammatory drugs"),!string_treatments.contains("aspirine"),!string_treatments.contains("ibuprofen"),!string_treatments.contains("naproxen"),
         !string_treatments.contains("calecoxib"),!string_treatments.contains("diclofenac"),!string_treatments.contains("indomethacin"),!string_treatments.contains("meloxicam"),!string_comorbidities.contains("hypersensitivity to propanolol"),
@@ -859,7 +859,7 @@ rule "propanolol4"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("ventricular cardiac arrhytmias"),
+        p1: Patient  (getHeartdisease().equals("ventricular cardiac arrhytmias"),
     !string_treatments.contains("cholestyramine"),!string_treatments.contains("colestipol"), !string_treatments.contains("warfarin"), !string_treatments.contains("antidepressant"), !string_treatments.contains("steroid"),
 !string_treatments.contains("non-steroidalantiinflammatory drugs"),!string_treatments.contains("aspirine"),!string_treatments.contains("ibuprofen"),!string_treatments.contains("naproxen"),
         !string_treatments.contains("calecoxib"),!string_treatments.contains("diclofenac"),!string_treatments.contains("indomethacin"),!string_treatments.contains("meloxicam"),!string_comorbidities.contains("hypersensitivity to propanolol"),
@@ -877,7 +877,7 @@ rule "propanolol5"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("hyperthyroidism"),
+        p1: Patient  (getHeartdisease().equals("hyperthyroidism"),
     !string_treatments.contains("cholestyramine"),!string_treatments.contains("colestipol"), !string_treatments.contains("warfarin"), !string_treatments.contains("antidepressant"), !string_treatments.contains("steroid"),
 !string_treatments.contains("non-steroidalantiinflammatory drugs"),!string_treatments.contains("aspirine"),!string_treatments.contains("ibuprofen"),!string_treatments.contains("naproxen"),
         !string_treatments.contains("calecoxib"),!string_treatments.contains("diclofenac"),!string_treatments.contains("indomethacin"),!string_treatments.contains("meloxicam"),!string_comorbidities.contains("hypersensitivity to propanolol"),
@@ -895,7 +895,7 @@ rule "propanolol6"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("thyrotoxicosis"),
+        p1: Patient  (getHeartdisease().equals("thyrotoxicosis"),
     !string_treatments.contains("cholestyramine"),!string_treatments.contains("colestipol"), !string_treatments.contains("warfarin"), !string_treatments.contains("antidepressant"), !string_treatments.contains("steroid"),
 !string_treatments.contains("non-steroidalantiinflammatory drugs"),!string_treatments.contains("aspirine"),!string_treatments.contains("ibuprofen"),!string_treatments.contains("naproxen"),
         !string_treatments.contains("calecoxib"),!string_treatments.contains("diclofenac"),!string_treatments.contains("indomethacin"),!string_treatments.contains("meloxicam"),!string_comorbidities.contains("hypersensitivity to propanolol"),
@@ -913,7 +913,7 @@ rule "amlodipine"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("blood vesel relaxant"), age != Age.CHILD, age != Age.YOUNG, pregnant == false,
+        p1: Patient  (getHeartdisease().equals("blood vesel relaxant"), age != Age.CHILD, age != Age.YOUNG, pregnant == false,
     !string_treatments.contains("ketoconazole"),!string_treatments.contains("itraconazole"),!string_treatments.contains("ritonavir"),!string_treatments.contains("inidinavir"),
         !string_treatments.contains("nelfinavir"),!string_treatments.contains("rifampcin"),!string_treatments.contains("rythromycin"),!string_treatments.contains("clarithromycin"),
         !string_treatments.contains("diltiazem"),!string_treatments.contains("dantrolene"),!string_treatments.contains("tracolimus"),!string_treatments.contains("sirolimus"),
@@ -929,7 +929,7 @@ rule "diltiazem"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("high blood pressure"), age != Age.CHILD, pregnant == false,
+        p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("ivabradine"),!string_comorbidities.contains("hypersensitivity to diltiazem"),
         !string_comorbidities.contains("diseased sinus node syndrome second or third degree atrioventricular (AV) block"),
         !string_comorbidities.contains("hypotension"),!string_comorbidities.contains("myocardial infarction"),!string_comorbidities.contains("congestive heart"),
@@ -944,7 +944,7 @@ rule "nitredipine"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("hypertension"), age != Age.CHILD, age != Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("hypertension"), age != Age.CHILD, age != Age.YOUNG,
     !string_treatments.contains("hypersesitivity to nitredipine"),!string_treatments.contains("rifampicin"),!string_treatments.contains("antiepileptic"),
         !string_treatments.contains("phenobarbital"),!string_treatments.contains("phenytoin"),!string_treatments.contains("carbamazepine"),!string_treatments.contains("notriptyline"),
         !string_treatments.contains("fluoxetine"),!string_treatments.contains("zidovudine"),!string_treatments.contains("valporic acid"),!string_treatments.contains("cimetidine"),
@@ -960,7 +960,7 @@ rule "atorvastatin"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("infarction risk"), age != Age.CHILD, age != Age.YOUNG, pregnant == false,
+        p1: Patient  (getHeartdisease().equals("infarction risk"), age != Age.CHILD, age != Age.YOUNG, pregnant == false,
     !string_treatments.contains("hypersesitivity to atorvastatin"),!string_treatments.contains("glacaprevir"),!string_treatments.contains("pibrentasvir"),
         !string_treatments.contains("heptatitis C antivirals"))
 then
@@ -972,7 +972,7 @@ rule "cholestyramine"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("cholesterol"), pregnant == false,
+        p1: Patient  (getHeartdisease().equals("cholesterol"), pregnant == false,
     !string_treatments.contains("pills"),!string_treatments.contains("digoxin"),!string_treatments.contains("penicillin G"),
         !string_treatments.contains("phenobarbital"),!string_treatments.contains("phenylbutazone"),!string_treatments.contains("propanolol"),!string_treatments.contains("spironolactone"),
         !string_treatments.contains("tetracycline"))
@@ -986,7 +986,7 @@ rule "ezetimbe"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("cholesterol"), pregnant == false,
+        p1: Patient  (getHeartdisease().equals("cholesterol"), pregnant == false,
     !string_treatments.contains("erythromycin"),!string_treatments.contains("clarithromycin"),!string_treatments.contains("telithromycin"),
         !string_treatments.contains("HIV protease inhibitors"),!string_treatments.contains("boceprevir"),!string_treatments.contains("telaprevir"),!string_treatments.contains("nefazodone"),
         !string_treatments.contains("cobicistat"),!string_treatments.contains("gemfibrozil"),!string_treatments.contains("cyclosporine"),!string_treatments.contains("danazol"),
@@ -1001,7 +1001,7 @@ rule "fenofibrate"
     //salience 15
     dialect "java"
     when
-        p1: Patient  (heartdisease.equals("cholesterol"), age != Age.CHILD, age != Age.YOUNG,
+        p1: Patient  (getHeartdisease().equals("cholesterol"), age != Age.CHILD, age != Age.YOUNG,
     !string_treatments.contains("stains"),!string_treatments.contains("colchicine"),!string_treatments.contains("rhabdomylysis"),
         !string_comorbidities.contains("liver disease"),!string_comorbidities.contains("severe renal dysfunction"),!string_comorbidities.contains("preexisting gallblader disease"),
         !string_comorbidities.contains("diabetes mellitus"), !string_comorbidities.contains("thyroid disorder"),!string_comorbidities.contains("renal disorder"))

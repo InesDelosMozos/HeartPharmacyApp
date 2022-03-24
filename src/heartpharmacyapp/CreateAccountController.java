@@ -132,7 +132,7 @@ public class CreateAccountController {
             message.setSubject(asunto);
             message.setText(cuerpo);
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", remitente, "heartpharmacyapp");
+            transport.connect("smtp.gmail.com", remitente, "Heartpharmacyapp2022*");
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
         }

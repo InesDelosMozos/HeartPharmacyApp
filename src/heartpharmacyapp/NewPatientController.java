@@ -77,7 +77,7 @@ public class NewPatientController implements Initializable, ControllerClass {
     private TableColumn<Treatment, String> medicineCol;
 
     @FXML
-    private Button addComorbidityButton, addMedicineButton, addPatientButton, backMenuButton,recordECGButton;
+    private Button addComorbidityButton, addMedicineButton, addPatientButton, backMenuButton;
 
     @FXML
     private TextField txtNewComorbidity, txtNewMedicine;
@@ -94,6 +94,7 @@ public class NewPatientController implements Initializable, ControllerClass {
     private static ComorbidityManager comorbiditymanager;
     private static TreatmentManager treatmentmanager;
     private static SceneChanger sc;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -224,10 +225,17 @@ public class NewPatientController implements Initializable, ControllerClass {
         } else {
             this.pregnantChoiceBox.setValue("No");
         }
-        // int age= this.selectedPatient.getAge2();
-        //String stringage= Integer.toString(age);
-        //this.txtage.setText(stringage);
-        this.diseaseChoiceBox.setValue(this.selectedPatient.getHeartDisease());
+        Boolean gender = this.selectedPatient.getGender2();
+
+        if (gender == true) {
+            this.sexChoiceBox.setValue("Female");
+        } else {
+            this.sexChoiceBox.setValue("Male");
+        }
+        int age= this.selectedPatient.getAge2();
+        String stringage= Integer.toString(age);
+        this.txtage.setText(stringage);
+        this.diseaseChoiceBox.setValue(this.selectedPatient.getHeartdisease());
         comorbidities.addAll(selectedPatient.getComorbidity());
         medicines.addAll(selectedPatient.getTreatments());
 
@@ -267,11 +275,6 @@ public class NewPatientController implements Initializable, ControllerClass {
         }
         return validData;
     }
-    @FXML
-    void recordECG(ActionEvent event) {
-      
-        sc = new SceneChanger();
-        sc.changeScenes(event, "ecgrecording.fxml");
-    }
+    
     
 }
