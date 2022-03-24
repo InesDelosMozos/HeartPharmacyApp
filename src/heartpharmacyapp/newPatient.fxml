@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,12 +9,15 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="heartpharmacyapp.NewPatientController">
    <children>
-      <Label layoutX="22.0" layoutY="14.0" text="Introduce Patient Data: " />
-      <TextField fx:id="txtname" layoutX="22.0" layoutY="45.0" promptText="Full Name" />
-      <ChoiceBox fx:id="sexChoiceBox" layoutX="22.0" layoutY="90.0" prefWidth="150.0" />
+      <Label layoutX="167.0" text="Introduce Patient Data: ">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <TextField fx:id="txtname" layoutX="23.0" layoutY="55.0" promptText="Full Name" />
+      <ChoiceBox fx:id="sexChoiceBox" layoutX="22.0" layoutY="95.0" prefWidth="150.0" />
       <ChoiceBox fx:id="diseaseChoiceBox" layoutX="22.0" layoutY="135.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="pregnantChoiceBox" layoutX="316.0" layoutY="45.0" prefWidth="150.0" />
-      <Label layoutX="241.0" layoutY="50.0" text="Pregnant:" />
+      <ChoiceBox fx:id="pregnantChoiceBox" layoutX="317.0" layoutY="55.0" prefWidth="150.0" />
+      <Label layoutX="254.0" layoutY="59.0" text="Pregnant:" />
       <TableView fx:id="comorbidityTable" layoutX="22.0" layoutY="185.0" prefHeight="169.0" prefWidth="226.0">
         <columns>
           <TableColumn fx:id="comorbidityCol" prefWidth="225.0" text="Comorbidity:" />
@@ -29,7 +33,11 @@
       <TextField fx:id="txtNewMedicine" layoutX="267.0" layoutY="361.0" prefHeight="31.0" prefWidth="168.0" promptText="New Medicine" />
       <Button fx:id="addMedicineButton1" layoutX="445.0" layoutY="361.0" mnemonicParsing="false" onAction="#addMedicine" text="Add" />
       <Button fx:id="addPatientButton" layoutX="495.0" layoutY="361.0" mnemonicParsing="false" onAction="#addPatient" prefHeight="31.0" prefWidth="100.0" text="Add Patient" />
-      <TextField fx:id="txtage" layoutX="317.0" layoutY="90.0" promptText="Age" />
-      <Label layoutX="243.0" layoutY="94.0" text="Age:" />
+      <TextField fx:id="txtage" layoutX="317.0" layoutY="103.0" promptText="Age" />
+      <Label layoutX="267.0" layoutY="107.0" text="Age:" />
+      <Button fx:id="backMenuButton" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#backtoMenu" text="Back to Menu" />
+      <Label fx:id="nameError" layoutX="186.0" layoutY="59.0" />
+      <Label fx:id="ageError" layoutX="479.0" layoutY="107.0" />
+      <Button fx:id="recordECGButton" layoutX="279.0" layoutY="148.0" mnemonicParsing="false" onAction="#recordECG" prefHeight="25.0" prefWidth="191.0" text="Record ECG" />
    </children>
 </AnchorPane>

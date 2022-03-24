@@ -13,49 +13,26 @@ public class Ecg implements Serializable {
     private static final long serialVersionUID = -9008665011082537295L;
     private Integer id;
     private String name_ecg;
-    private Integer patient_id;
     private byte[] patient_ecg;
 
     public Ecg() {
     }
 
-    public Ecg(String name_ecg, Integer patient_id, byte[] patient_ecg) {
-        this.name_ecg = name_ecg;
-        this.patient_id = patient_id;
+    public Ecg(String name_ecg,  byte[] patient_ecg) {
+        this.name_ecg = name_ecg;  
         this.patient_ecg = patient_ecg;
     }
 
-    public Ecg(Integer id, String name_ecg, Integer patient_id, byte[] patient_ecg) {
+    public Ecg(Integer id, String name_ecg, byte[] patient_ecg) {
         this.id = id;
         this.name_ecg = name_ecg;
-        this.patient_id = patient_id;
         this.patient_ecg = patient_ecg;
     }
 
-    
-
-    public Integer getPatient_id() {
-        return patient_id;
+    public Ecg(int id, String ecgName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setPatient_id(Integer patient_id) {
-        this.patient_id = patient_id;
-    }
-
-    public Ecg(String name_ecg, Integer patient_id) {
-        this.name_ecg = name_ecg;
-        this.patient_id = patient_id;
-    }
-
-    public Ecg(Integer id, String name_ecg, Integer patient_id) {
-        this.id = id;
-        this.name_ecg = name_ecg;
-        this.patient_id = patient_id;
-    }
-
-  
-    
-    
     public Integer getId() {
         return id;
     }
@@ -121,10 +98,6 @@ public class Ecg implements Serializable {
         return true;
     }*/
 
-    @Override
-    public String toString() {
-        return "Ecg{" + "id=" + id + ", name_ecg=" + name_ecg + ", patient_id=" + patient_id + '}';
-    }
-  
+    
 
 }

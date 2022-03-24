@@ -99,10 +99,16 @@ public class SQLiteManager implements DBManager {
             String sql7 = "CREATE TABLE patientTreatment " + "(patientId     INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
                     + "treatmentId     INTEGER  REFERENCES treatment(id) ON UPDATE CASCADE ON DELETE SET NULL, " + "PRIMARY KEY(patientId,treatmentId))";
             stmt1.executeUpdate(sql7);
+            stmt1 = c.createStatement();
             String sql8 = "CREATE TABLE ecg " + "(id     INTEGER  PRIMARY KEY AUTOINCREMENT,"
-                    + " name_ecg   TEXT   NOT NULL," + "patient_id INTEGER REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL,"
+                    + " name_ecg   TEXT   NOT NULL,"
                     + " ecg_array BYTES)";
             stmt1.executeUpdate(sql8);
+           
+            stmt1 = c.createStatement();
+            String sql9 = "CREATE TABLE patientEcg " + "(patientId     INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
+                    + "ecgId     INTEGER  REFERENCES ecg(id) ON UPDATE CASCADE ON DELETE SET NULL, " + "PRIMARY KEY(patientId,ecgId))";
+            stmt1.executeUpdate(sql9);
             stmt1.close();
             
         } catch (SQLException e) {

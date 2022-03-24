@@ -17,6 +17,6 @@ public interface EcgManager {
 
     public void delete(Integer ecg_id);
     
-    public List<Ecg> getECGpatient(Integer patient_id);
+    public List<Ecg> getEcgFromPatient(int patientId);
 
 }

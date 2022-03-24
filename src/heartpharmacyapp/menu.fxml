@@ -6,11 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="heartpharmacyapp.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="heartpharmacyapp.MenuController">
    <children>
       <Button fx:id="addpt" layoutX="248.0" layoutY="110.0" mnemonicParsing="false" onAction="#addPatientScreen" prefHeight="25.0" prefWidth="157.0" text="Add Patient" />
-      <Button fx:id="viewtreatment" layoutX="248.0" layoutY="165.0" mnemonicParsing="false" onAction="#TreatmentScreen" prefHeight="25.0" prefWidth="157.0" text="View Treatment" />
+      <Button fx:id="viewtreatment" layoutX="248.0" layoutY="165.0" mnemonicParsing="false" onAction="#TreatmentScreen" prefHeight="25.0" prefWidth="157.0" text="View Patients" />
       <Button fx:id="ecg" layoutX="248.0" layoutY="219.0" mnemonicParsing="false" onAction="#ECGscreen" prefHeight="25.0" prefWidth="157.0" text="View ECG" />
    </children>
 </AnchorPane>

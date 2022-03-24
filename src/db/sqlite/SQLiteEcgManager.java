@@ -35,9 +35,8 @@ public class SQLiteEcgManager implements EcgManager {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String ecgName = rs.getString("name_ecg");
-                int patient_id = rs.getInt("patient_id");
 
-                Ecg newecg = new Ecg(id, ecgName, patient_id);
+                Ecg newecg = new Ecg(id, ecgName);
                 ecgsList.add(newecg);
             }
         } catch (SQLException e) {
@@ -49,12 +48,11 @@ public class SQLiteEcgManager implements EcgManager {
     @Override
     public void add(Ecg ecg) {
         try {
-            String sql = "INSERT INTO ecg (name_ecg, patient_id, ecg_array) "
-                    + "VALUES (?,?,?)";
+            String sql = "INSERT INTO ecg (name_ecg, ecg_array) "
+                    + "VALUES (?,?)";
             PreparedStatement prep = c.prepareStatement(sql);
             prep.setString(1, ecg.getName_ecg());
-            prep.setInt(2, ecg.getPatient_id());
-            prep.setBytes(3, ecg.getPatient_ecg());
+            prep.setBytes(2, ecg.getPatient_ecg());
             prep.executeUpdate();
             prep.close();
         } catch (SQLException e) {
@@ -73,23 +71,27 @@ public class SQLiteEcgManager implements EcgManager {
         }
     }
     
-    public List<Ecg> getECGpatient(Integer patient_id){
-        List<Ecg> ecgsList = new ArrayList<>();
+   public List<Ecg> getEcgFromPatient(int patientId) {
+        List<Ecg> ecgsList = new ArrayList();
         try {
-            String sql = "SELECT * FROM ecg WHERE patient_id LIKE ?";
-            PreparedStatement prep = c.prepareStatement(sql);
-            prep.setString(1, "%" + patient_id + "%");
-            ResultSet rs = prep.executeQuery();
+            String sql = "SELECT * FROM patients AS p JOIN patientEcg AS pe ON p.id = pe.patientsId "
+                    + "JOIN ecg AS e ON pe.comorbidityId=e.id "
+                    + "WHERE p.id = ?";
+            PreparedStatement p = c.prepareStatement(sql);
+            p.setInt(1, patientId);
+            ResultSet rs = p.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String ecgName = rs.getString("name_ecg");
                 byte[] ecg_array = rs.getBytes("ecg_array");
-                Ecg newecg = new Ecg(id, ecgName, patient_id,ecg_array);
+                Ecg newecg = new Ecg(id, ecgName, ecg_array);
                 ecgsList.add(newecg);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return ecgsList;
     }
 

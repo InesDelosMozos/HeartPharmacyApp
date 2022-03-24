@@ -26,8 +26,48 @@ public class Patient {
    private SimpleStringProperty heartdisease;
    private ArrayList<Comorbidity> comorbidity = new ArrayList<>();
    private ArrayList<Drug> drugs = new ArrayList<>();
-    private ArrayList<Treatment> treatments = new ArrayList<>();
-   //private List<String> treatments = new ArrayList<>();
+   private ArrayList<Treatment> treatments = new ArrayList<>();
+   private int drug_id;
+   private ArrayList<String> string_treatments = new ArrayList<>();
+   private ArrayList<String> string_comorbidities = new ArrayList<>();
+   private String drug;
+
+    public Patient(String heartDisease, Age age, Gender gender, ArrayList<String> string_comorbidities, ArrayList<String> string_treatments) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getDrug() {
+        return drug;
+    }
+
+    public void setDrug(String drug) {
+        this.drug = drug;
+    }
+   
+   
+    public void setString_treatments(ArrayList<String> string_treatments) {
+        this.string_treatments = string_treatments;
+    }
+
+    public void setString_comorbidities(ArrayList<String> string_comorbidities) {
+        this.string_comorbidities = string_comorbidities;
+    }
+
+    public ArrayList<String> getString_treatments() {
+        return string_treatments;
+    }
+
+    public ArrayList<String> getString_comorbidities() {
+        return string_comorbidities;
+    }
+
+    public void setDrug_id(int drug_id) {
+        this.drug_id = drug_id;
+    }
+
+    public int getDrug_id() {
+        return drug_id;
+    }
    
 
     public Patient(String fullName,String heartdisease, int age2,boolean gender,boolean pregnant) {

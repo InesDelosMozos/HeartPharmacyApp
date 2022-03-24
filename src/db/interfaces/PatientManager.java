@@ -33,4 +33,6 @@ public interface PatientManager {
     public List<Patient> searchByName(String name);
   
     public ArrayList<Patient> getPatients();
+    public void assign_ecg(int patientId, int ecgId);
+    public void update(Patient patient);
 }

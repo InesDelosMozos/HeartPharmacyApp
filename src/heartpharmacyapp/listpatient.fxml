@@ -8,14 +8,18 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="heartpharmacyapp.ListPatientController">
    <children>
-      <TableView fx:id="patientTable" layoutX="187.0" layoutY="69.0" prefHeight="200.0" prefWidth="280.0">
+      <TableView fx:id="patientTable" layoutX="78.0" layoutY="66.0" onMouseClicked="#patientSelected" prefHeight="268.0" prefWidth="465.0">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="heartDiseaseCol" prefWidth="129.0" text="Heart Disease" />
+          <TableColumn fx:id="nameCol" prefWidth="156.0" text="Name" />
+            <TableColumn fx:id="heartDiseaseCol" prefWidth="233.0" text="Heart Disease" />
         </columns>
       </TableView>
-      <TextField fx:id="filtro" layoutX="78.0" layoutY="14.0" onKeyReleased="#search" prefHeight="31.0" prefWidth="212.0" promptText="Introduces Patient´s Name" />
-      <Button fx:id="editButton" layoutX="152.0" layoutY="331.0" mnemonicParsing="false" onAction="#editButtonPushed" text="See Patient" />
+      <TextField fx:id="filtro" layoutX="178.0" layoutY="22.0" onKeyReleased="#search" prefHeight="31.0" prefWidth="365.0" promptText="Introduces Patient´s Name" />
+      <Button fx:id="editButton" layoutX="454.0" layoutY="345.0" mnemonicParsing="false" onAction="#editButtonPushed" prefHeight="25.0" prefWidth="89.0" text="See Patient" />
+      <Button fx:id="backtoMenu" layoutX="78.0" layoutY="345.0" mnemonicParsing="false" onAction="#backtoMenu" prefHeight="25.0" prefWidth="108.0" text="Back To Menu" />
+      <Label layoutX="78.0" layoutY="29.0" text="Search By Name:" />
+      <Button fx:id="obtainTreatmentButton" layoutX="286.0" layoutY="345.0" mnemonicParsing="false" onAction="#giveMedication" prefHeight="25.0" prefWidth="127.0" text="Obtain Treatment" />
+      
    </children>
 </AnchorPane>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="heartpharmacyapp.ECGRecordingController">
+   <children>
+      <Label layoutX="213.0" layoutY="36.0" prefHeight="22.0" prefWidth="160.0" text="ECG RECORDING:">
+         <font>
+            <Font name="Garamond" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="100.0" text="Please introduce the name of the ECG:" />
+      <TextField fx:id="ecgnameButton" layoutX="86.0" layoutY="139.0" prefHeight="25.0" prefWidth="451.0" promptText="ECG name" />
+      <Button fx:id="saveEcgButton" layoutX="425.0" layoutY="175.0" mnemonicParsing="false" onAction="#recordEcg" prefHeight="25.0" prefWidth="112.0" text="Save ECG" />
+      <Button fx:id="backButtton" layoutX="86.0" layoutY="175.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="91.0" text="Back " />
+   </children>
+</AnchorPane>
