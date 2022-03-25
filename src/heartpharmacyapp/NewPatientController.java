@@ -100,7 +100,7 @@ public class NewPatientController implements Initializable, ControllerClass {
     public void initialize(URL location, ResourceBundle resources) {
 
         this.addPatientButton.setDisable(false);
-
+        
         // creamos el sexChoiceBox
         ObservableList<String> sexList = FXCollections.observableArrayList("Male", "Female");
         sexChoiceBox.setItems(sexList);
@@ -127,6 +127,7 @@ public class NewPatientController implements Initializable, ControllerClass {
         //this.comorbidityTable.getItems().clear();
         this.comorbidityTable.setItems(comorbidities);
         this.txtNewComorbidity.clear();
+       
     }
 
     public void addMedicine(ActionEvent event) {
@@ -211,11 +212,22 @@ public class NewPatientController implements Initializable, ControllerClass {
             alert.setHeaderText("Please check the data");
             alert.showAndWait();
         }
-
+     clearData();
+    }
+    public void clearData(){
+        this.txtname.clear();
+        this.txtage.clear();
+        this.medicineTable.getItems().clear();
+        this.comorbidityTable.getItems().clear();
+        this.pregnantChoiceBox.setValue("No");
+        this.sexChoiceBox.setValue("Male");
+        this.diseaseChoiceBox.setValue("Hypertension");
     }
 
     @Override
     public void preloadPatientData(Patient patient) {
+        this.comorbidities.clear();
+        this.medicines.clear();
         this.selectedPatient = patient;
         this.txtname.setText(selectedPatient.getFullName());
         Boolean pregnant = this.selectedPatient.getPregnant();
@@ -236,13 +248,29 @@ public class NewPatientController implements Initializable, ControllerClass {
         String stringage= Integer.toString(age);
         this.txtage.setText(stringage);
         this.diseaseChoiceBox.setValue(this.selectedPatient.getHeartdisease());
+        comorbidities.clear();
         comorbidities.addAll(selectedPatient.getComorbidity());
+        medicines.clear();
         medicines.addAll(selectedPatient.getTreatments());
-
+        comorbidityTable.getItems().clear();
         comorbidityTable.setItems(comorbidities);
+        medicineTable.getItems().clear();
         medicineTable.setItems(medicines);
+        
         this.addPatientButton.setDisable(true);
-
+        this.txtname.setDisable(true);
+        this.txtage.setDisable(true);
+        this.addComorbidityButton.setDisable(true);
+        this.addMedicineButton.setDisable(true);
+        this.pregnantChoiceBox.setDisable(true);
+        this.sexChoiceBox.setDisable(true);
+        this.txtNewComorbidity.setDisable(true);
+        this.txtNewMedicine.setDisable(true);
+        this.diseaseChoiceBox.setDisable(true);
+        this.medicineTable.setDisable(true);
+        this.comorbidityTable.setDisable(true);
+        
+        
     }
 
     

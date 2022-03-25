@@ -29,12 +29,15 @@ public class Ecg implements Serializable {
         this.patient_ecg = patient_ecg;
     }
 
-    public Ecg(int id, String ecgName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     public Integer getId() {
         return id;
+    }
+
+    public Ecg(Integer id, String name_ecg) {
+        this.id = id;
+        this.name_ecg = name_ecg;
     }
 
     public void setId(Integer id) {

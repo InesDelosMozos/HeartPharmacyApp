@@ -71,19 +71,19 @@ public class SQLiteEcgManager implements EcgManager {
         }
     }
     
-   public List<Ecg> getEcgFromPatient(int patientId) {
-        List<Ecg> ecgsList = new ArrayList();
+   public ArrayList<Ecg> getEcgFromPatient(int patientId) {
+        ArrayList<Ecg> ecgsList = new ArrayList();
         try {
-            String sql = "SELECT * FROM patients AS p JOIN patientEcg AS pe ON p.id = pe.patientsId "
-                    + "JOIN ecg AS e ON pe.comorbidityId=e.id "
+            String sql = "SELECT * FROM patients AS p JOIN patientEcg AS pe ON p.id = pe.patientId "
+                    + "JOIN ecg AS e ON pe.ecgId = e.id "
                     + "WHERE p.id = ?";
             PreparedStatement p = c.prepareStatement(sql);
             p.setInt(1, patientId);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String ecgName = rs.getString("name_ecg");
-                byte[] ecg_array = rs.getBytes("ecg_array");
+                int id = rs.getInt(10);
+                String ecgName = rs.getString(11);
+                byte[] ecg_array = rs.getBytes(12);
                 Ecg newecg = new Ecg(id, ecgName, ecg_array);
                 ecgsList.add(newecg);
 

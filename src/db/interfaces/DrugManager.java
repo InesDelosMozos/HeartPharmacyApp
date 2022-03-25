@@ -5,10 +5,12 @@
  */
 package db.interfaces;
 
+import pojos.Drug;
+
 /**
  *
  * @author RAQUEL
  */
 public interface DrugManager {
-    
+    public void add(Drug drug );
 }

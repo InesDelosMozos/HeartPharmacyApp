@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="heartpharmacyapp.EcgsPatientController">
+   <children>
+      <TableView fx:id="ecgTable" layoutX="51.0" layoutY="91.0" onMouseClicked="#activateButton" prefHeight="200.0" prefWidth="126.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="20.0" text="id" />
+          <TableColumn fx:id="nameCol" prefWidth="105.0" text="Name" />
+        </columns>
+      </TableView>
+      <Button fx:id="showButton" layoutX="51.0" layoutY="310.0" mnemonicParsing="false" onAction="#showEcg" prefHeight="25.0" prefWidth="126.0" text="Plot Graph " />
+      <LineChart fx:id="graph" layoutX="197.0" layoutY="50.0" prefHeight="319.0" prefWidth="381.0" title="ECG">
+        <xAxis>
+          <NumberAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Button fx:id="back" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#back" text="Back" />
+   </children>
+</AnchorPane>

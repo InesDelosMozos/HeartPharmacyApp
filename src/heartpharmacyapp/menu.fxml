@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,8 +9,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="heartpharmacyapp.MenuController">
    <children>
-      <Button fx:id="addpt" layoutX="248.0" layoutY="110.0" mnemonicParsing="false" onAction="#addPatientScreen" prefHeight="25.0" prefWidth="157.0" text="Add Patient" />
-      <Button fx:id="viewtreatment" layoutX="248.0" layoutY="165.0" mnemonicParsing="false" onAction="#TreatmentScreen" prefHeight="25.0" prefWidth="157.0" text="View Patients" />
-      <Button fx:id="ecg" layoutX="248.0" layoutY="219.0" mnemonicParsing="false" onAction="#ECGscreen" prefHeight="25.0" prefWidth="157.0" text="View ECG" />
+      <Button fx:id="addpt" layoutX="182.0" layoutY="159.0" mnemonicParsing="false" onAction="#addPatientScreen" prefHeight="60.0" prefWidth="237.0" text="Add Patient" />
+      <Button fx:id="viewtreatment" layoutX="182.0" layoutY="253.0" mnemonicParsing="false" onAction="#TreatmentScreen" prefHeight="60.0" prefWidth="237.0" text="View Patients" />
+      <Label fx:id="welcomelabel" layoutX="176.0" layoutY="51.0" prefHeight="77.0" prefWidth="297.0" text="Welcome Doctor!">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

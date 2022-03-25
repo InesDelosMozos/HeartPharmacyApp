@@ -33,7 +33,7 @@ public class HeartpharmacyApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("listpatient.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("pantallaInicio.fxml"));
         
         Scene scene = new Scene(root);
         

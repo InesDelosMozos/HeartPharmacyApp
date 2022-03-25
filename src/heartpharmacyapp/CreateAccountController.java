@@ -54,7 +54,9 @@ public class CreateAccountController {
     private PasswordField repeatpassword;
 
     @FXML
-    private TextField username;
+    private TextField username,emailtxt;
+    
+    private boolean comprobar=true;
 
     @FXML
     void createUser(ActionEvent event) throws IOException {
@@ -69,16 +71,27 @@ public class CreateAccountController {
         }
         if (repeatpassword.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Error!", "Please enter your password again");
+            
             return;
         }
         String username = this.username.getText();
+        String email= this.emailtxt.getText();
+        
+        if(checkData(email)==false){
+            showAlert(Alert.AlertType.ERROR, owner, "Error!", "Please enter an existent gmail.com account");
+            return;
+        }
         String password = this.password.getText();
         String confirmPassword = this.repeatpassword.getText();
         if(!password.equals(confirmPassword)) {
+            comprobar=false;
             showAlert(Alert.AlertType.ERROR, owner, "Error!", "Please enter your password again");
             return;
-        }
-        try{
+        }else{
+               comprobar=true;
+           }
+        if(comprobar==true){
+            try{
             boolean userRepeated= userman.existingUserName(username);
             
             if(userRepeated) {
@@ -90,7 +103,7 @@ public class CreateAccountController {
                 byte[] hash = md.digest();
                 User user = new User(username, hash);
                 userman.newUser(user);
-                sendEmail("Welcome to RehabClinic", "Your user is: "+username+"\n"+"Your password is: "+password,"ines.delosmozos@gmail.com" );
+                sendEmail("Welcome to Heart Pharmacy app!", "Your user is: "+username+"\n"+"Your password is: "+password,email);
                 Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -102,6 +115,8 @@ public class CreateAccountController {
             e.printStackTrace();
         }
    
+        }
+        
        }
 
        public static void infoMessage(String infoMessage, String headerText, String title) {
@@ -148,6 +163,17 @@ public class CreateAccountController {
        alert.setContentText(message);
        alert.initOwner(owner);
        alert.show();
+       }
+       public boolean checkData(String email){
+           boolean data= true;
+           
+           if(email.contains("@gmail.com")==false){
+               data=false;
+               comprobar=false;
+           }else{
+               comprobar=true;
+           }
+           return data;
        }
        
 }

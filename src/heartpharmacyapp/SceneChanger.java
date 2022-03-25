@@ -46,10 +46,35 @@ public class SceneChanger {
         window.setScene(scene);
         window.show();
     }
+    public void changeScenesWithEcgs(ActionEvent event, String viewName, Patient patient,
+            EcgsPatientController controllerClass) {
 
-    public void changeScenestoECG(ActionEvent event, String viewName, Patient patient,ECGRecordingController controllerClass) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(viewName));
+        Parent parent = null;
 
-          FXMLLoader loader = new FXMLLoader();
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(parent);
+
+        // access the controller class and preload
+        controllerClass = loader.getController();
+        controllerClass.preloadPatientData(patient);
+
+        // get the stage from the event that was passed in
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void changeScenestoECG(ActionEvent event, String viewName, Patient patient, ECGRecordingController controllerClass) {
+
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(viewName));
         Parent parent = null;
 
@@ -89,28 +114,7 @@ public class SceneChanger {
         window.setScene(scene);
         window.show();
     }
-    public void changeScenesWithEcg(ActionEvent event, String viewName, Ecg ecg, ShowEcgController controllerClass) {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(viewName));
-        Parent parent = null;
-
-        try {
-            parent = loader.load();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        Scene scene = new Scene(parent);
-        controllerClass = loader.getController();
-        //controllerClass.preloadEcgData(ecg);
-
-        // get the stage from the event that was passed in
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
+    
 
 }

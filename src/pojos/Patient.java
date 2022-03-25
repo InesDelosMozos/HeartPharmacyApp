@@ -27,6 +27,9 @@ public class Patient {
    private ArrayList<Comorbidity> comorbidity = new ArrayList<>();
    private ArrayList<Drug> drugs = new ArrayList<>();
    private ArrayList<Treatment> treatments = new ArrayList<>();
+   private ArrayList<Ecg> ecgs = new ArrayList<>();
+
+   
    private int drug_id;
    private ArrayList<String> string_treatments = new ArrayList<>();
    private ArrayList<String> string_comorbidities = new ArrayList<>();
@@ -158,7 +161,13 @@ public class Patient {
     public void setTreatments(ArrayList<Treatment> treatments) {
         this.treatments = treatments;
     }
-    
+     public void setEcgs(ArrayList<Ecg> ecgs) {
+        this.ecgs = ecgs;
+    }
+
+    public ArrayList<Ecg> getEcgs() {
+        return ecgs;
+    }
 
     
     public Patient(Integer newPatientId, String patientName, String patientDisease,

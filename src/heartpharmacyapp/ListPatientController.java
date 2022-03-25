@@ -48,6 +48,9 @@ import BITalino.BITalinoException;
 import BITalino.BitalinoDemo;
 import BITalino.DeviceDiscoverer;
 import BITalino.Frame;
+import db.interfaces.DrugManager;
+import db.interfaces.EcgManager;
+import pojos.Ecg;
 
 public class ListPatientController implements Initializable {
 
@@ -59,7 +62,7 @@ public class ListPatientController implements Initializable {
     @FXML
     private TableColumn<Patient, String> nameCol;
     @FXML
-    private Button editButton, backtoMenu, obtainTreatmentButton, recordEcgButton, showECG;
+    private Button editButton, backtoMenu, obtainTreatmentButton, recordECGButton, showECG;
 
     @FXML
     private TableColumn<Patient, String> heartDiseaseCol;
@@ -73,17 +76,23 @@ public class ListPatientController implements Initializable {
     private static PatientManager patientmanager;
     private static ComorbidityManager comorbiditymanager;
     private static TreatmentManager treatmentmanager;
+    private static DrugManager drugmanager;
+    private static EcgManager ecgmanager;
     private static SceneChanger sc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
         this.editButton.setDisable(true);
+        this.obtainTreatmentButton.setDisable(true);
+        this.recordECGButton.setDisable(true);
+        this.showECG.setDisable(true);
 
         dbManager = new SQLiteManager();
         patientmanager = dbManager.getPatientManager();
         comorbiditymanager = dbManager.getComorbidityManager();
         treatmentmanager = dbManager.getTreatmentManager();
+        drugmanager = dbManager.getDrugManager();
 
         idCol.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("fullName"));
@@ -136,12 +145,16 @@ public class ListPatientController implements Initializable {
 
     public void patientSelected() {
         this.editButton.setDisable(false);
+        this.obtainTreatmentButton.setDisable(false);
+        this.recordECGButton.setDisable(false);
+        this.showECG.setDisable(false);
     }
 
     public void loadPatients() {
 
         List<Patient> patientList = new ArrayList<Patient>();
         patientList = patientmanager.getPatients();
+        
 
         //patients.addAll(patientList);
         int i;
@@ -159,7 +172,7 @@ public class ListPatientController implements Initializable {
             System.out.println(p);
             stringcomorbidities = comorbiditymanager.getComorbiditiesFromPatient(p.getId());
             p.setString_comorbidities(stringcomorbidities);
-            //System.out.println(stringcomorbidities);
+            System.out.println(stringcomorbidities);
             stringtreatments = treatmentmanager.getTreatmentFromPatient(p.getId());
             p.setString_treatments(stringtreatments);
             for (int j = 0; j < stringcomorbidities.size(); j++) {
@@ -216,10 +229,11 @@ public class ListPatientController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         Drug drug = new Drug();
         drug.setName(p1.getDrug());
-        //int patient_id= p.getId();
-        // drugmanager.add(drug);
-        //int drug_id= dbManager.getLastId();
-        //patientmanager.assign_drug(patient_id,drug_id);
+        int patient_id= p1.getId();
+        drugmanager.add(drug);
+        int drug_id= dbManager.getLastId();
+        p1.setDrug_id(drug_id);
+        patientmanager.update(p1);
     }
 
     public Patient formatearPatient(Patient p) {
@@ -241,8 +255,17 @@ public class ListPatientController implements Initializable {
     @FXML
     void showECG(ActionEvent event) {
         Patient p1 = this.patientTable.getSelectionModel().getSelectedItem();
+        loadEcgs(p1);
         sc = new SceneChanger();
-        ECGRecordingController ecgcontrol = new ECGRecordingController();
-        sc.changeScenestoECG(event, "selectEcg.fxml", p1, ecgcontrol);
+        EcgsPatientController ecgcontrol= new EcgsPatientController();
+        sc.changeScenesWithEcgs(event, "ecgspatient.fxml", p1,ecgcontrol);
+    }
+    public void loadEcgs(Patient p1) {
+        dbManager = new SQLiteManager();
+        ecgmanager = dbManager.getEcgManager();
+        ArrayList<Ecg> ecgList = new ArrayList<Ecg>();
+
+        ecgList = ecgmanager.getEcgFromPatient(p1.getId());
+        p1.setEcgs(ecgList);
     }
 }
