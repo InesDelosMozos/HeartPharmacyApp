@@ -137,6 +137,7 @@ public class ListPatientController implements Initializable {
 
         sc = new SceneChanger();
         Patient patient = this.patientTable.getSelectionModel().getSelectedItem(); //return the selected staff in the table
+        System.out.println(patient);//En este paciente ya estan repetidas las medicines 
         NewPatientController npc = new NewPatientController();
         sc.changeScenesWithPatient(event, "newPatient.fxml", patient, npc);
 
@@ -154,39 +155,37 @@ public class ListPatientController implements Initializable {
 
         List<Patient> patientList = new ArrayList<Patient>();
         patientList = patientmanager.getPatients();
-        
 
         //patients.addAll(patientList);
         int i;
         Patient p;
-        Comorbidity comorbidity = new Comorbidity();
-        Treatment treatment = new Treatment();
-        ArrayList<Comorbidity> comorbidities = new ArrayList<Comorbidity>();
-        ArrayList<String> stringcomorbidities = new ArrayList<String>();
-        ArrayList<Treatment> treatments = new ArrayList<Treatment>();
-        ArrayList<String> stringtreatments = new ArrayList<String>();
 
         for (i = 0; i < patientList.size(); i++) {
+            ArrayList<Comorbidity> comorbidities = new ArrayList<Comorbidity>();
+            ArrayList<String> stringcomorbidities = new ArrayList<String>();
+            ArrayList<Treatment> treatments = new ArrayList<Treatment>();
+            ArrayList<String> stringtreatments = new ArrayList<String>();
 
             p = patientList.get(i);
-            System.out.println(p);
-            stringcomorbidities = comorbiditymanager.getComorbiditiesFromPatient(p.getId());
+            stringcomorbidities.addAll(comorbiditymanager.getComorbiditiesFromPatient(p.getId()));
             p.setString_comorbidities(stringcomorbidities);
-            System.out.println(stringcomorbidities);
-            stringtreatments = treatmentmanager.getTreatmentFromPatient(p.getId());
+            stringtreatments.addAll(treatmentmanager.getTreatmentFromPatient(p.getId()));
             p.setString_treatments(stringtreatments);
             for (int j = 0; j < stringcomorbidities.size(); j++) {
+                Comorbidity comorbidity = new Comorbidity();
                 comorbidity.setName(stringcomorbidities.get(j));
                 comorbidities.add(comorbidity);
+
             }
+
             p.setComorbidity(comorbidities);
 
             for (int j = 0; j < stringtreatments.size(); j++) {
+                Treatment treatment = new Treatment();
                 treatment.setName(stringtreatments.get(j));
                 treatments.add(treatment);
             }
             p.setTreatments(treatments);
-            System.out.println(p);
             this.patients.add(p);
 
         }
@@ -215,29 +214,32 @@ public class ListPatientController implements Initializable {
         }
 
         ksession.insert(p1);
-
+        
         ksession.fireAllRules();
-
-        System.out.println("AFTER");
-
-        System.out.println(p1);
-
         ksession.dispose();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Message");
-        alert.setHeaderText("The medicines is: Paracetamol");//TODO mirar esto
-        Optional<ButtonType> result = alert.showAndWait();
-        Drug drug = new Drug();
-        drug.setName(p1.getDrug());
-        int patient_id= p1.getId();
-        drugmanager.add(drug);
-        int drug_id= dbManager.getLastId();
-        p1.setDrug_id(drug_id);
-        patientmanager.update(p1);
+        String treatment = p1.getDrug();
+        if (treatment==null) {
+            alert.setHeaderText("Treatment can not be found");
+            Optional<ButtonType> result = alert.showAndWait();
+        } else {
+            
+            Drug drug = new Drug();
+            drug.setName(p1.getDrug());
+            int patient_id = p1.getId();
+            drugmanager.add(drug);
+            int drug_id = dbManager.getLastId();
+            p1.setDrug_id(drug_id);
+            patientmanager.update(p1);
+            alert.setHeaderText("The medicines is: " + p1.getDrug());
+            Optional<ButtonType> result = alert.showAndWait();
+        }
+
     }
 
     public Patient formatearPatient(Patient p) {
-        System.out.println(p.getAge2());
+
         p.setAge(Age.ageFromInteger(p.getAge2()));
         p.setGender(Gender.genderFromBoolean(p.getGender2()));
         //Patient p1 = new Patient(p.getHeartdisease(), p.getAge(), p.getGender(), p.getString_comorbidities(),p.getString_treatments());
@@ -257,9 +259,10 @@ public class ListPatientController implements Initializable {
         Patient p1 = this.patientTable.getSelectionModel().getSelectedItem();
         loadEcgs(p1);
         sc = new SceneChanger();
-        EcgsPatientController ecgcontrol= new EcgsPatientController();
-        sc.changeScenesWithEcgs(event, "ecgspatient.fxml", p1,ecgcontrol);
+        EcgsPatientController ecgcontrol = new EcgsPatientController();
+        sc.changeScenesWithEcgs(event, "ecgspatient.fxml", p1, ecgcontrol);
     }
+
     public void loadEcgs(Patient p1) {
         dbManager = new SQLiteManager();
         ecgmanager = dbManager.getEcgManager();

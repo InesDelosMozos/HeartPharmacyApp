@@ -20,12 +20,13 @@
 import pojos.Patient
 
 
+
 rule "Losartan"
     //salience 15
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD,pregnant == false,
-    !string_treatments.contains("Hypersensitivity to Losartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("severe liver failure"))
+    !string_treatments.contains("hypersensitivity to losartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("severe liver failure"))
 
 then
     p1.setDrug("losartan");
@@ -36,7 +37,7 @@ rule "Losartan2"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to Losartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("severe liver failure"))
+    !string_treatments.contains("hypersensitivity to losartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("severe liver failure"))
 
 then
     p1.setDrug("losartan");
@@ -47,7 +48,7 @@ rule "Olmeosartan"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to Olmesartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("jaundice"),!string_comorbidities.contains("biliary obstruction"))
+    !string_treatments.contains("hypersensitivity to olmesartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("jaundice"),!string_comorbidities.contains("biliary obstruction"))
 
 then
     p1.setDrug("Olmeosartan");
@@ -58,7 +59,7 @@ rule "Olmeosartan2"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to Olmesartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("jaundice"),!string_comorbidities.contains("biliary obstruction"))
+    !string_treatments.contains("hypersensitivity to olmesartan"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("jaundice"),!string_comorbidities.contains("biliary obstruction"))
 
 then
     p1.setDrug("Olmeosartan");
@@ -91,7 +92,7 @@ rule "Valsartan"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to simvastatin"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("liver disease"))
+    !string_treatments.contains("hypersensitivity to simvastatin"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("liver disease"))
 
 then
     p1.setDrug("Valsartan");
@@ -102,7 +103,7 @@ rule "Valsartan2"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("high blood pressure"), age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to simvastatin"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("liver disease"))
+    !string_treatments.contains("hypersensitivity to simvastatin"),!string_treatments.contains("string_treatments with aliskiren"), !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("kidney malfunction"),!string_comorbidities.contains("liver disease"))
 
 then
     p1.setDrug("Valsartan");
@@ -113,7 +114,7 @@ rule "Apixaban"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("clots"), age != Age.CHILD, age != Age.YOUNG,age != Age.ELDER, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to apixaban"),!string_treatments.contains("string_treatments to prevent blood clotting"), !string_comorbidities.contains("bleed excessively"), !string_comorbidities.contains("disease in a body organ"),!string_comorbidities.contains("recent/active ulcer"),!string_comorbidities.contains("recent brain bleed"),!string_comorbidities.contains("liver disease"))
+    !string_treatments.contains("hypersensitivity to apixaban"),!string_treatments.contains("string_treatments to prevent blood clotting"), !string_comorbidities.contains("bleed excessively"), !string_comorbidities.contains("disease in a body organ"),!string_comorbidities.contains("recent/active ulcer"),!string_comorbidities.contains("recent brain bleed"),!string_comorbidities.contains("liver disease"))
 
 then
     p1.setDrug("Apixaban");
@@ -135,7 +136,7 @@ rule "Edoxaban"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to edoxaban"),!string_treatments.contains("amiodarone"),!string_treatments.contains("atorvastatin"),!string_treatments.contains("cyclosporine"),!string_treatments.contains("digoxin"),!string_treatments.contains("erythromycin"),!string_treatments.contains("esomeprazole"),!string_treatments.contains("ketoconazole"),!string_treatments.contains("quinidine"),!string_treatments.contains("rifampin"),!string_treatments.contains("amiodarone "),!string_treatments.contains("escitalopram"),!string_treatments.contains("fluoxetine"),!string_treatments.contains("fluvoxamine"),
+    !string_treatments.contains("hypersensitivity to edoxaban"),!string_treatments.contains("amiodarone"),!string_treatments.contains("atorvastatin"),!string_treatments.contains("cyclosporine"),!string_treatments.contains("digoxin"),!string_treatments.contains("erythromycin"),!string_treatments.contains("esomeprazole"),!string_treatments.contains("ketoconazole"),!string_treatments.contains("quinidine"),!string_treatments.contains("rifampin"),!string_treatments.contains("amiodarone "),!string_treatments.contains("escitalopram"),!string_treatments.contains("fluoxetine"),!string_treatments.contains("fluvoxamine"),
     !string_treatments.contains("paroxetine"),!string_treatments.contains("sertraline"),!string_treatments.contains("serotonin-norepinephrine reuptake inhibitors (SNRIs)"),!string_treatments.contains("duloxetine"),!string_treatments.contains("levomilnacipran"),!string_treatments.contains("milnacipran"),!string_treatments.contains("venlafaxine"),!string_treatments.contains("verapamil "), !string_comorbidities.contains("heavy bleeding"), !string_comorbidities.contains("mechanical heart valve"),!string_comorbidities.contains("stomach cancer"),!string_comorbidities.contains("liver disease"),!string_comorbidities.contains("antiphospholipid syndrome"))
 
 then
@@ -147,7 +148,7 @@ rule "Heparin"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to heparin"),!string_treatments.contains("allergic to beef or pork"),!string_comorbidities.contains("low platelets"), !string_comorbidities.contains("heart attack"),!string_comorbidities.contains("hemophilia"),!string_comorbidities.contains("cancer"))
+    !string_treatments.contains("hypersensitivity to heparin"),!string_treatments.contains("allergic to beef or pork"),!string_comorbidities.contains("low platelets"), !string_comorbidities.contains("heart attack"),!string_comorbidities.contains("hemophilia"),!string_comorbidities.contains("cancer"))
 
 then
     p1.setDrug("Heparin");
@@ -158,7 +159,7 @@ rule "Rivaroxaban"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("clots"), age != Age.YOUNG,age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("Hypersensitivity to rivaroxaban"),
+    !string_treatments.contains("hypersensitivity to rivaroxaban"),
     !string_treatments.contains("warfarin"),!string_treatments.contains("dabigatran"),
     !string_treatments.contains("apixaban"),!string_treatments.contains(" heparin"),
     !string_comorbidities.contains("bleed excessively"),
@@ -189,7 +190,7 @@ rule "clopidrogel"
     when
     p1: Patient  (getHeartdisease().equals("myocardial infarction"),
     !string_treatments.contains("hypersensitivity to clopidrogel"),
-    !string_comorbidities.contains("Severe liver failure"), !string_comorbidities.contains("Active pathologic bleeding"))
+    !string_comorbidities.contains("severe liver failure"), !string_comorbidities.contains("active pathologic bleeding"))
  
 
 then
@@ -232,7 +233,7 @@ rule "prasugrel"
     !string_treatments.contains("sucrose-isomaltase insufficiency"),
     !string_comorbidities.contains("active pathologic bleeding"),
     !string_comorbidities.contains("stroke"), !string_comorbidities.contains("transient ischemic attack"),
-    !string_comorbidities.contains("Severe liver failure"))
+    !string_comorbidities.contains("severe liver failure"))
 
 then
     p1.setDrug("prasugrel");
@@ -262,8 +263,8 @@ rule "Benazepril"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("taking sacubitril"), !string_treatments.contains("allergy to ACE inhibitor"),
-    !string_comorbidities.contains("Diabetes"), !string_comorbidities.contains("angioedema"),
+    !string_treatments.contains("taking sacubitril"), !string_treatments.contains("allergy to ace inhibitor"),
+    !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("angioedema"),
     !string_comorbidities.contains("kydney disease"))
 
 then
@@ -277,8 +278,8 @@ rule "Benazepril2"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("stroke"), age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("taking sacubitril"), !string_treatments.contains("allergy to ACE inhibitor"),
-    !string_comorbidities.contains("Diabetes"), !string_comorbidities.contains("angioedema"),
+    !string_treatments.contains("taking sacubitril"), !string_treatments.contains("allergy to ace inhibitor"),
+    !string_comorbidities.contains("diabetes"), !string_comorbidities.contains("angioedema"),
     !string_comorbidities.contains("kydney disease"))
 
 then
@@ -292,11 +293,11 @@ rule "Captopril"
     dialect "java"
     when
     p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
-    !string_treatments.contains("taking sacubitril"), !string_treatments.contains("High blood pressure drugs"),
-    !string_treatments.contains("Diuretics"),!string_treatments.contains("Potassium supplements"),
-    !string_treatments.contains("potassium-based salts"),!string_treatments.contains("Mood stabilizers"),
-    !string_treatments.contains("Pain drugs"), !string_treatments.contains("Drugs to prevent organ transplant rejection"),
-    !string_treatments.contains("Captopril"),
+    !string_treatments.contains("taking sacubitril"), !string_treatments.contains("high blood pressure drugs"),
+    !string_treatments.contains("diuretics"),!string_treatments.contains("potassium supplements"),
+    !string_treatments.contains("potassium-based salts"),!string_treatments.contains("mood stabilizers"),
+    !string_treatments.contains("pain drugs"), !string_treatments.contains("drugs to prevent organ transplant rejection"),
+    !string_treatments.contains("captopril"),
     !string_comorbidities.contains("kidney disease"))
 
 then
@@ -312,7 +313,7 @@ rule "Enalapril"
     p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("anesthetic,"),!string_treatments.contains(" pain drugs"),!string_treatments.contains("heart and blood pressure drugs"),
     !string_treatments.contains("potassium supplements"),!string_treatments.contains("diuretics"), !string_treatments.contains("lithium"),
-    !string_treatments.contains("Drugs used to prevent rejection of an organ transplant"),!string_treatments.contains("neprilysin inhibitors"),
+    !string_treatments.contains("drugs used to prevent rejection of an organ transplant"),!string_treatments.contains("neprilysin inhibitors"),
     !string_comorbidities.contains("hypotension"), !string_comorbidities.contains("algiodema"),
     !string_comorbidities.contains("kydney disease"))
 
@@ -493,7 +494,7 @@ rule "digoxin1"
     when
         p1: Patient  (getHeartdisease().equals("heart failure"), age != Age.CHILD,
     !string_treatments.contains("diuretics"),!string_treatments.contains("corticosteroids"), !string_treatments.contains("antidepressants"), !string_comorbidities.contains("allergic to glycosides"),
-!string_comorbidities.contains("Stokes-Adams"), !string_comorbidities.contains("Wolf-Parkinson-White"), !string_comorbidities.contains("obstructive cardiomyopathy"))
+!string_comorbidities.contains("stokes-Adams"), !string_comorbidities.contains("wolf-Parkinson-White"), !string_comorbidities.contains("obstructive cardiomyopathy"))
 
 then
     p1.setDrug("digoxin");
@@ -506,7 +507,7 @@ rule "digoxin2"
     when
         p1: Patient  (getHeartdisease().equals("arrythmia"), age != Age.CHILD,
     !string_treatments.contains("diuretics"),!string_treatments.contains("corticosteroids"), !string_treatments.contains("antidepressants"), !string_comorbidities.contains("allergic to glycosides"),
-!string_comorbidities.contains("Stokes-Adams"), !string_comorbidities.contains("Wolf-Parkinson-White"), !string_comorbidities.contains("obstructive cardiomyopathy"))
+!string_comorbidities.contains("stokes-Adams"), !string_comorbidities.contains("wolf-Parkinson-White"), !string_comorbidities.contains("obstructive cardiomyopathy"))
 
 then
     p1.setDrug("digoxin");
@@ -649,7 +650,6 @@ then
 end
 
 
-
 rule "bisoprolol1"
     //salience 15
     dialect "java"
@@ -677,6 +677,7 @@ then
     System.out.println("Nadolol is the best treatment for the patient");
 end
 
+
 rule "nadolol2"
     //salience 15
     dialect "java"
@@ -695,8 +696,8 @@ rule "warfarin"
     when
         p1: Patient  (getHeartdisease().equals("myocardial infarction"), age != Age.CHILD, pregnant == false,
     !string_treatments.contains("salicylates"),!string_treatments.contains("sulphonamides"), !string_treatments.contains("hypoglycaemics"), !string_treatments.contains("barbiturate"), !string_treatments.contains("contraceptives"),
-!string_comorbidities.contains("Vitamin K deficiency"),!string_comorbidities.contains("Peptic ulcer"),!string_comorbidities.contains("Haemophilia"),!string_comorbidities.contains("Anaemia"),!string_comorbidities.contains("Hypertension"),
-!string_comorbidities.contains("Pericarditis"), !string_comorbidities.contains("Bacterial endocarditis"), !string_comorbidities.contains("Severe hepatic insufficiency"), !string_comorbidities.contains("Renal insufficiency"))
+!string_comorbidities.contains("vitamin K deficiency"),!string_comorbidities.contains("peptic ulcer"),!string_comorbidities.contains("haemophilia"),!string_comorbidities.contains("anaemia"),!string_comorbidities.contains("hypertension"),
+!string_comorbidities.contains("pericarditis"), !string_comorbidities.contains("bacterial endocarditis"), !string_comorbidities.contains("severe hepatic insufficiency"), !string_comorbidities.contains("renal insufficiency"))
 
 then
     p1.setDrug("warfarin");

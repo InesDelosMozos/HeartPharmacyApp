@@ -66,8 +66,8 @@ public class EcgsPatientController implements ControllerClass, Initializable {
     private static DBManager dbManager;
     private ObservableList<Integer> dataEcg = FXCollections.observableArrayList();
     public java.util.List<Integer> indice = new ArrayList();
-    NumberAxis xAxis = new NumberAxis(0,100,1);
-    NumberAxis yAxis = new NumberAxis(450,550,1);
+    NumberAxis xAxis = new NumberAxis();
+    NumberAxis yAxis = new NumberAxis();
     SceneChanger sc;
     
 
@@ -112,8 +112,13 @@ public class EcgsPatientController implements ControllerClass, Initializable {
         Ecg ecg = this.ecgTable.getSelectionModel().getSelectedItem();
         loadEcg(ecg);
         //XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();
+        
         XYChart.Series<Number, Number> series = new LineChart.Series<>();
         series.setName("Ecg");
+        xAxis.setAutoRanging(false);
+        xAxis.setLowerBound(0);
+        xAxis.setUpperBound(100);
+        yAxis.setAutoRanging(false);
         yAxis.setLowerBound(450);
         yAxis.setUpperBound(550);
         

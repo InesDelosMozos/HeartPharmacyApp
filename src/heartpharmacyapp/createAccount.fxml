@@ -14,9 +14,9 @@
       <PasswordField fx:id="repeatpassword" layoutX="193.0" layoutY="315.0" prefHeight="25.0" prefWidth="182.0" promptText="RepeatPassword" />
       <Button fx:id="create" layoutX="324.0" layoutY="351.0" mnemonicParsing="false" onAction="#createUser" text="Create" />
       <TextField fx:id="emailtxt" layoutX="193.0" layoutY="247.0" prefHeight="25.0" prefWidth="182.0" promptText="example@gmail.com" />
-      <ImageView fitHeight="182.0" fitWidth="191.0" layoutX="193.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="137.0" fitWidth="216.0" layoutX="194.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/userlogin.jpg" />
+            <Image url="@../images/IMG-20220326-WA0028.jpg" />
          </image>
       </ImageView>
    </children>

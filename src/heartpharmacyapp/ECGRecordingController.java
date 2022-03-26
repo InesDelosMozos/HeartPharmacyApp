@@ -80,7 +80,8 @@ public class ECGRecordingController implements Initializable, ControllerClass {
      List<Integer> ecg_list = BITalino.BitalinoDemo.main();
      recordECGMenu(file,ecg_list,this.ecgpatient.getId());
      Window owner = saveEcgButton.getScene().getWindow();
-     showAlert(Alert.AlertType.ERROR, owner, "ECG completed", "You can now go back to the menu");
+     this.saveEcgButton.setDisable(true);
+     showAlert(Alert.AlertType.CONFIRMATION, owner, "ECG completed", "You can now go back to the menu");
     }
 
     @FXML

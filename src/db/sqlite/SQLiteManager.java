@@ -66,12 +66,12 @@ public class SQLiteManager implements DBManager {
         try {
             stmt1 = c.createStatement();
             String sql1 = "CREATE TABLE patients " + "(id     INTEGER  PRIMARY KEY AUTOINCREMENT,"
-                    + " fullName  TEXT   NOT NULL," + " disease   TEXT   NOT NULL," + " drug_id INTEGER  REFERENCES patients(id) ON UPDATE CASCADE ON DELETE SET NULL, "
+                    + " fullName  TEXT   NOT NULL," + " disease   TEXT   NOT NULL," + " drug_id INTEGER  REFERENCES drugs(id) ON UPDATE CASCADE ON DELETE SET NULL, "
                     + "gender  BOOLEAN," +"age INTEGER," + "pregnant BOOLEAN)";
             stmt1.executeUpdate(sql1);
             stmt1 = c.createStatement();
             String sql2 = "CREATE TABLE drugs " + "(id     INTEGER  PRIMARY KEY AUTOINCREMENT,"
-                    + " name   TEXT   NOT NULL," + "duration INTEGER NOT NULL)";
+                    + " name   TEXT   NOT NULL," + "duration INTEGER)";
            
 
             stmt1.executeUpdate(sql2);

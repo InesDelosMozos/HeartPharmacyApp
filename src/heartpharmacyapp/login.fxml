@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,8 +9,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="heartpharmacyapp.LoginController">
    <children>
-      <TextField fx:id="usernamelogin" layoutX="226.0" layoutY="160.0" promptText="Username" />
-      <PasswordField fx:id="passwordlogin" layoutX="226.0" layoutY="200.0" promptText="Password" />
-      <Button fx:id="loginid" layoutX="323.0" layoutY="247.0" mnemonicParsing="false" onAction="#loginUser" text="Login" />
+      <TextField fx:id="usernamelogin" layoutX="226.0" layoutY="213.0" promptText="Username" />
+      <PasswordField fx:id="passwordlogin" layoutX="226.0" layoutY="260.0" promptText="Password" />
+      <Button fx:id="loginid" layoutX="323.0" layoutY="307.0" mnemonicParsing="false" onAction="#loginUser" text="Login" />
+      <ImageView fitHeight="189.0" fitWidth="211.0" layoutX="195.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/login.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

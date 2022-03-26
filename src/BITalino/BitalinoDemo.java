@@ -46,7 +46,7 @@ public class BitalinoDemo {
 
             // start acquisition on analog channels A2 and A6
             //If you want A1, A3 and A4 you should use {0,2,3}
-            int[] channelsToAcquire = {1}; //A1 --> EMG, A2-->ECG  
+            int[] channelsToAcquire = {2}; //A1 --> EMG, A2-->ECG  
             bitalino.start(channelsToAcquire);
             
 
@@ -70,8 +70,9 @@ public class BitalinoDemo {
 
                 for (int i = 0; i < frame.length; i++) {
                    
-                    arrayECG.add(frame[i].analog[1]);
-                    System.out.println(frame[i].analog[1]);
+                    arrayECG.add(frame[i].analog[2]);
+                    System.out.println(" seq: " + frame[i].seq + " "
+                            + frame[i].analog[0] + " ");
                     
                     
 

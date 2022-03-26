@@ -26,12 +26,11 @@ public class SQLiteDrugManager implements DrugManager {
     
     public void add(Drug drug ) {
         try {
-            String sql = "INSERT INTO drug (name, duration "
+            String sql = "INSERT INTO drugs (name"
                     + ") "
-                    + "VALUES (?,?)";
+                    + "VALUES (?)";
             PreparedStatement prep = c.prepareStatement(sql);
             prep.setString(1, drug.getName());
-            prep.setInt(2, drug.getDuration());
             prep.executeUpdate();
             prep.close();
         } catch (SQLException e) {

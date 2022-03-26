@@ -78,9 +78,7 @@ public class Patient {
         this.gender2 = gender;
     }
 
-    public Patient(int i, String juan) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
    
     
     public Gender getGender() {
@@ -175,7 +173,7 @@ public class Patient {
        this.id = new SimpleIntegerProperty(newPatientId);
        this.fullName= new SimpleStringProperty(patientName);
        this.heartdisease = new SimpleStringProperty(patientDisease);
-       this.gender = Gender.genderFromBoolean(patientGender);
+       this.gender2 = patientGender;
        this.age2 = new SimpleIntegerProperty(patientAge);
        this.pregnant = patientPregnant;       
     }
@@ -195,7 +193,7 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Patient{" + "id=" + id + ", pregnant=" + pregnant + ", fullName=" + fullName + ", heartdisease=" + heartdisease + ", comorbidity=" + comorbidity + ", treatments=" + treatments + '}';
+        return "Patient{" + "id=" + id + ", pregnant=" + pregnant + ", fullName=" + fullName + ", heartdisease=" + heartdisease + ", comorbidity=" + comorbidity + ", treatments=" + treatments + ", gender=" + gender2+'}';
     }
 
     

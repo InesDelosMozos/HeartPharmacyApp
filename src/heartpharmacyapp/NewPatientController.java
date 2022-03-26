@@ -106,9 +106,9 @@ public class NewPatientController implements Initializable, ControllerClass {
         sexChoiceBox.setItems(sexList);
         sexChoiceBox.setValue("Male");
 
-        ObservableList<String> diseaseList = FXCollections.observableArrayList("Hypertension", "Myocardial Infarction", "Angina Pectoris", "Arrythmia", "High Cholesterol", "Clots");
+        ObservableList<String> diseaseList = FXCollections.observableArrayList("hypertension", "myocardial infarction", "angina pectoris", "arrythmia", "cholesterol", "clots","heart failure", "high blood pressure","myocardial infarction","stroke","heart attack ","infarction","angina","hyperthyroidism","thyrotoxicosis");
         diseaseChoiceBox.setItems(diseaseList);
-        diseaseChoiceBox.setValue("Hypertension");
+        diseaseChoiceBox.setValue("hypertension");
 
         ObservableList<String> pregnantList = FXCollections.observableArrayList("No", "Yes");
         pregnantChoiceBox.setItems(pregnantList);
@@ -120,25 +120,60 @@ public class NewPatientController implements Initializable, ControllerClass {
     }
 
     public void addComorbidity(ActionEvent event) {
-
+        
         String name = this.txtNewComorbidity.getText();
+        char[] chars = name.toCharArray();
+        boolean validData = true;
+
+        for (char r : chars) {
+            if (Character.isDigit(r)) {
+                validData = false;
+                this.txtNewComorbidity.clear();
+                break;
+            }
+        }
+        if(validData==true){
         Comorbidity c = new Comorbidity(name);
         this.comorbidities.add(c);
         //this.comorbidityTable.getItems().clear();
         this.comorbidityTable.setItems(comorbidities);
         this.txtNewComorbidity.clear();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("You have to add a comorbidity");
+            alert.setHeaderText("Please check the data");
+            alert.showAndWait();
+        }
        
     }
 
     public void addMedicine(ActionEvent event) {
-
+    
         String name = this.txtNewMedicine.getText();
+        char[] chars = name.toCharArray();
+        boolean validData = true;
+
+        for (char r : chars) {
+            if (Character.isDigit(r)) {
+                validData = false;
+                this.txtNewMedicine.clear();
+                break;
+            }
+        }
+        
+        if(validData==true){
         Treatment m = new Treatment(name);
         this.medicines.add(m);
         //this.comorbidityTable.getItems().clear();
         this.medicineTable.setItems(medicines);
 
         this.txtNewMedicine.clear();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("You have to add a medicine");
+            alert.setHeaderText("Please check the data");
+            alert.showAndWait();
+        }
     }
 
     public void addPatient(ActionEvent event) {
@@ -179,12 +214,13 @@ public class NewPatientController implements Initializable, ControllerClass {
         }
 
         Boolean validData = comprobarData(name);
+        
         if (validData == true && comprobarAge == true) {
             this.nameError.setText("");
             this.ageError.setText("");
             this.addPatientButton.setDisable(false);
             Patient p = new Patient(name, heartdisease, age, gender, pregnant);
-            System.out.println(p);
+           
             patientmanager.add(p);
 
             int patient_id = dbManager.getLastId();
@@ -192,7 +228,7 @@ public class NewPatientController implements Initializable, ControllerClass {
 
             for (int i = 0; i < comorbidities.size(); i++) {
                 comorb = comorbidities.get(i).getName();
-                System.out.println(comorb);
+                
                 comorbiditymanager.add(comorb);
                 int comorbidity_id = dbManager.getLastId();
                 patientmanager.assign_comorbidity(patient_id, comorbidity_id);
@@ -221,13 +257,14 @@ public class NewPatientController implements Initializable, ControllerClass {
         this.comorbidityTable.getItems().clear();
         this.pregnantChoiceBox.setValue("No");
         this.sexChoiceBox.setValue("Male");
-        this.diseaseChoiceBox.setValue("Hypertension");
+        this.diseaseChoiceBox.setValue("hypertension");
     }
 
     @Override
     public void preloadPatientData(Patient patient) {
-        this.comorbidities.clear();
-        this.medicines.clear();
+        //PROBLEMA ESTA EN EL PATIENT QUE LE DAMOS
+        //this.comorbidities.clear();
+        //this.medicines.clear();
         this.selectedPatient = patient;
         this.txtname.setText(selectedPatient.getFullName());
         Boolean pregnant = this.selectedPatient.getPregnant();
@@ -238,7 +275,7 @@ public class NewPatientController implements Initializable, ControllerClass {
             this.pregnantChoiceBox.setValue("No");
         }
         Boolean gender = this.selectedPatient.getGender2();
-
+        
         if (gender == true) {
             this.sexChoiceBox.setValue("Female");
         } else {
@@ -248,13 +285,14 @@ public class NewPatientController implements Initializable, ControllerClass {
         String stringage= Integer.toString(age);
         this.txtage.setText(stringage);
         this.diseaseChoiceBox.setValue(this.selectedPatient.getHeartdisease());
-        comorbidities.clear();
+        //comorbidities.clear();
         comorbidities.addAll(selectedPatient.getComorbidity());
-        medicines.clear();
+        //medicines.clear();
         medicines.addAll(selectedPatient.getTreatments());
-        comorbidityTable.getItems().clear();
+        //comorbidityTable.getItems().clear();
         comorbidityTable.setItems(comorbidities);
-        medicineTable.getItems().clear();
+        //medicineTable.getItems().clear();
+        
         medicineTable.setItems(medicines);
         
         this.addPatientButton.setDisable(true);

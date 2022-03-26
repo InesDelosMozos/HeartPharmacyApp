@@ -107,7 +107,7 @@ public class SQLitePatientManager implements PatientManager {
 
                 Patient newpatient = new Patient(id, patientName, patientDisease,
                         patientGender, patientAge, patientPregnant);
-                System.out.println(patientAge);
+                
                 patientsList.add(newpatient);
             }
         } catch (SQLException e) {
